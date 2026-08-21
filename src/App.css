@@ -1,3 +1,7 @@
-.ul{
-  margin: 0;
+h1, h2, h3, nav, button{
+  font-family:'Press Start 2P', monospace;
+}
+
+body, p{
+  font-family: 'Space Grotesk', sans-serif;
 }
