@@ -14,8 +14,8 @@
 
 *{
   box-sizing: border-box;
-  margin: 1.5px;
-  padding: 2.7px;
+  margin: 0;
+  padding: 0;
 }
 
 body{
@@ -29,4 +29,14 @@ footer{
   text-align: center;
   padding: 1rem;
   font-size: 0.8rem;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
 }
