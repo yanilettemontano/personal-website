@@ -8,8 +8,24 @@ function App() {
     <div>
       {/* Hero*/}
       <section>
-        <h1>Yanilette Montano</h1>
-        <p>Computer Engineering at University of California, Irvine </p>
+        <h1>Personal Portfolio</h1>
+        <p>Computer Engineering Undergraduate at University of California, Irvine </p>
+      </section>
+
+      <nav className="nav">
+        <button>About Me</button>
+        <button>Projects</button>
+        <button>Skills</button>
+        <button>Contact</button>
+      </nav>
+
+      <section className="hero">
+        <div className="window-frame">
+          <div className="window-titlebar">YANILETTE MONTANO</div>
+          <div className="window-body">
+            <img src="/src/assets/pixel-headshot.png" alt="Pixel art portrait of Yanilette Montano" />
+          </div>
+        </div>
       </section>
 
       {/* About */}
@@ -77,7 +93,6 @@ function App() {
 
       {/* Contact */}
       <footer>
-      <p>Let's Connect!</p>
       <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer">Github</a>
       {' · '}
       <a href="https://www.linkedin.com/in/yanilette-montano-bb9644292/" target="_blank" rel="noreferrer">LinkedIn</a>

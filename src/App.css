@@ -5,3 +5,78 @@ h1, h2, h3, nav, button{
 body, p{
   font-family: 'Space Grotesk', sans-serif;
 }
+
+.nav{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.nav button{
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  background-color: var(--color-button);
+  border: 2px solid var(--color-button-border);
+  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  cursor: pointer;
+  color: var(--color-text-dark);
+}
+
+.nav button:hover{
+  background-color: var(--color-titlebar);
+  color:var(--color-text-light);
+}
+
+.hero{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+.window-frame{
+  width: min(90vw, 400px);
+  border: 3px solid var(--color-button-border);
+  background-color: var(--color-panel);
+}
+
+.window-titlebar{
+  background-color: var(--color-titlebar);
+  color: var(--color-text-light);
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  text-align:center;
+  padding: 0.9rem 0;
+}
+
+.window-body{
+  padding: 1rem;
+}
+
+.window-body img{
+  width: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+section{
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1.5 rem;
+  text-align: center;
+}
+
+section h2{
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+section p{
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-size: 1rem;
+}
