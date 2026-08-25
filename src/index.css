@@ -19,7 +19,6 @@
 }
 
 body{
-  margin:1.5px;
   background-color: var(--color-bg);
   font-family: var(--font-body);
   color: var(--color-text-dark);
@@ -36,7 +35,7 @@ html{
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }

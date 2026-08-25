@@ -1,13 +1,50 @@
 import './App.css'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { useState, useEffect, use } from 'react'
+
+function useTypewriter(text, speed = 60){
+  const [displayed, setDisplayed] = useState('')
+
+  useEffect(() => {
+    let cancelled = false
+    let i = 0
+    let timeoutId
+    
+    const tick = () => {
+      if (cancelled) return
+      if (i < text.length) {
+        setDisplayed(text.slice(0, i + 1))
+        i++
+        timeoutId = setTimeout(tick, speed)
+      }
+    }
+
+    setDisplayed('')
+    timeoutId = setTimeout(tick, speed)
+
+
+    return () => {
+      cancelled = true
+      clearTimeout(timeoutId)
+    }
+  }, [text, speed])
+  return displayed
+}
+
+const fadeUp ={
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0},
+}
 
 function App() {
+  const typedTitle = useTypewriter('Personal Portfolio', 70)
 
   return (
     <div>
       {/* Hero*/}
       <section>
-        <h1>Personal Portfolio</h1>
+        <h1>{typedTitle}<span className="cursor">|</span></h1>
       </section>
 
       <nav className="nav">
@@ -28,11 +65,19 @@ function App() {
 
       {/* About */}
       <section id="about" className="section section-about">
+        <motion.div
+          inital="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          transition={{ duration: 0.6 }}
+          >
         <h2>About</h2>
         <p>
           I am a Computer Engineering undergraduate student at the University of California, Irvine, expecting to 
           graduate in March 2028. 
         </p>
+        </motion.div>
       </section>
 
       {/* Projects */}
