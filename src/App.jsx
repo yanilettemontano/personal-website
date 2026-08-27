@@ -92,6 +92,11 @@ function App() {
             Queue Management with ECN signaling for quantum networks, replacing a fixed global window with adaptive, fidelity-driven tuning.
             Fixed multiple race conditions in multi-hop entanglement swapping. 
           </p>
+          <figure className="project-figure">
+          <img src="/src/assets/Montano_UMass.png" alt="Research Poster for the CQN REU internship"
+          className="project-image"/>
+          <figcaption>NSF REU poster through the Center of Quantum Networks. Presented Summer of 2026.</figcaption>
+          </figure>
         </div>
 
         <div>
@@ -102,6 +107,11 @@ function App() {
             Tapered Piece-Square Tables, Mobility, King Safety, and Pawn Structure. The evaluation function was used
             for a team AI that won every tournament game. Out of 32 teams, our team placed 4th in the final tournament.
           </p>
+          <figure className="project-figure">
+            <img src="/src/assets/AnteaterChess.png" alt="Anteater Chess Gameplay"
+            className="project-image"/>
+            <figcaption>Gameplay snippet of the custom chess game.</figcaption>
+          </figure>
         </div>
 
         <div>

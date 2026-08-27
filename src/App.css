@@ -173,3 +173,13 @@ section p{
 @keyframes blink{
   50% {opacity: 0;}
 }
+
+.project-image{
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 4px;
+  border: 2px solid var(--color-button-border);
+}
