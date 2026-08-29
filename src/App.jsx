@@ -74,8 +74,27 @@ function App() {
           >
         <h2>About</h2>
         <p>
-          I am a Computer Engineering undergraduate student at the University of California, Irvine, expecting to 
-          graduate in March 2028. 
+          I'm an ambitious Computer Engineering undergraduate with research experience in quantum networking
+          and semiconductor memory systems, as well as project work spanning classical systems, networking,
+          and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
+          started with in classical computing. 
+
+          I chose to pursue Computer Engineering at UC Irvine, drawn to the low-level logic of how systems talk to each
+          other such as C, C++, and the invisible choreography that keeps data moving reliably across an unreliable world. 
+          That instinct showed up in coursework and projects alike: I built the full board-evaulation module in C for a custom chess 
+          engine that won every tournament game, and designed the deck-managament system for a client-server poker game, chasing down
+          bugs like a hidden shuffle bias along the way.
+
+          This past summer, I became a research intern through an NSF REU at Krastanov Lab, working on QuantumSavory.jl, and open-source
+          simulator for quantum network protocols. Starting from zero quantum knowledge, I learned qubits, entanglement, and Bell pairs from
+          the ground up, alongside a new programming language Julia. My core contribtion was designing adaptive congestion control for Quantum TCP
+          by replacing a fixed transmission window with real-time, fidelity-driven tuning. 
+
+          People who know me well will tell you I don't let a hard bug stay unsolved. I have high expectations for where this goes next
+          and I'm particularly drawn to quantum networking and quantum information science, where systems-level thinking meets genuinely new physics.
+
+          Please reach out if you're curious about my work, if you have a research or internship opportunity I should know about, or if you just want 
+          to talk quantum networks.
         </p>
         </motion.div>
       </section>
@@ -120,6 +139,17 @@ function App() {
           <p>Designed the deck management system for a client-server poker game, fixed a Fisher-Yates
             shuffle bias, implemented multi-street Seven Card Stud dealing, and debugged JSON serialization and GUI rendering.
           </p>
+          <figure className="project-figure">
+            <video className="video-wrapper"
+            controls
+            muted
+            playsInline
+            >
+              <source src="/videos/poker-demo.mp4" type="video/mp4"/>
+              Your browser doesn't support embedded vidoes.
+            </video>
+            <figcaption>Poker game demo - client-server texas hold'em gameplay</figcaption>
+          </figure>
           </div>
         </div>
       </section>

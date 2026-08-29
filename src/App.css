@@ -183,3 +183,12 @@ section p{
   border-radius: 4px;
   border: 2px solid var(--color-button-border);
 }
+
+.video-wrapper{
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 2px solid var(--color-button-border);
+  border-radius: 4px;
+}
