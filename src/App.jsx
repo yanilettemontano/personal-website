@@ -66,6 +66,7 @@ function App() {
       {/* About */}
       <section id="about" className="section section-about">
         <motion.div
+          className="section-inner"
           inital="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -156,8 +157,10 @@ function App() {
 
       {/*Skills*/}
       <section id="skills" className="section section-skills">
+        <div className="section-inner">
           <h2>Skills</h2>
           <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
+        </div>
       </section>
 
       {/* Contact */}

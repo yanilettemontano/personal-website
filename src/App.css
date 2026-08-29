@@ -85,10 +85,10 @@ body, p{
   image-rendering: pixelated;
 }
 
-section{
+section:not(.section){
   max-width: 700px;
   margin: 0 auto;
-  padding: 3rem 1.5 rem;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
