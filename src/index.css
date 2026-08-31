@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap');
 :root{
-  --color-bg: #ddc9ae;
-  --color-panel: #d6d6ce;
-  --color-titlebar: #4a5a3a;
-  --color-button: #a3ab8c;
-  --color-button-border: #2e2e2e;
-  --color-text-dark: #2e2e2e;
-  --color-text-light: #f5f5f0;
+  --color-bg: #f5efe6;
+  --color-panel: #e8ddce;
+  --color-accent-dark: #4a3428;
+  --color-accent-mid: #8b5e3c;
+  --color-button: #c9a67d;
+  --color-button-border: #4a3428;
+  --color-text-dark: #3b2a20;
+  --color-text-light: #f5efe6;
 
-  --font-pixel: 'Press Start 2P', monospace;
-  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Comfortaa', sans-serif;
+  --font-body: 'Nunito Sans', sans-serif;
 }
 
 *{

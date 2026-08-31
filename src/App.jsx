@@ -1,6 +1,5 @@
 import './App.css'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
-import { motion } from 'framer-motion'
 import { useState, useEffect, use } from 'react'
 
 function useTypewriter(text, speed = 60){
@@ -43,61 +42,40 @@ function App() {
   return (
     <div>
       {/* Hero*/}
-      <section>
+      <section id="header" className="section section-header">
         <h1>{typedTitle}<span className="cursor">|</span></h1>
-      </section>
-
-      <nav className="nav">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <section className="hero">
-        <div className="window-frame">
-          <div className="window-titlebar">YANILETTE MONTANO</div>
-          <div className="window-body">
-            <img src="/src/assets/pixel-headshot.png" alt="Pixel art portrait of Yanilette Montano" />
-          </div>
-        </div>
       </section>
 
       {/* About */}
       <section id="about" className="section section-about">
-        <motion.div
-          className="section-inner"
-          inital="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-          >
-        <h2>About</h2>
-        <p>
-          I'm an ambitious Computer Engineering undergraduate with research experience in quantum networking
-          and semiconductor memory systems, as well as project work spanning classical systems, networking,
-          and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
-          started with in classical computing. 
-
-          I chose to pursue Computer Engineering at UC Irvine, drawn to the low-level logic of how systems talk to each
-          other such as C, C++, and the invisible choreography that keeps data moving reliably across an unreliable world. 
-          That instinct showed up in coursework and projects alike: I built the full board-evaulation module in C for a custom chess 
-          engine that won every tournament game, and designed the deck-managament system for a client-server poker game, chasing down
-          bugs like a hidden shuffle bias along the way.
-
-          This past summer, I became a research intern through an NSF REU at Krastanov Lab, working on QuantumSavory.jl, and open-source
-          simulator for quantum network protocols. Starting from zero quantum knowledge, I learned qubits, entanglement, and Bell pairs from
-          the ground up, alongside a new programming language Julia. My core contribtion was designing adaptive congestion control for Quantum TCP
-          by replacing a fixed transmission window with real-time, fidelity-driven tuning. 
-
-          People who know me well will tell you I don't let a hard bug stay unsolved. I have high expectations for where this goes next
-          and I'm particularly drawn to quantum networking and quantum information science, where systems-level thinking meets genuinely new physics.
-
-          Please reach out if you're curious about my work, if you have a research or internship opportunity I should know about, or if you just want 
-          to talk quantum networks.
-        </p>
-        </motion.div>
+        <div className ="section-inner about-layout">
+          <div className ="about-photo">
+            <img src="/src/assets/headshot.jpg" alt="Headshot of Yanilette Montano" />
+            <div className="about-contact-buttons">
+              <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="icon-btn" aria-label="Github">
+                <FaGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/yanilette-montano-bb9644292/" target="_blank" rel="noreferrer" className="icon-btn" aria-label="LinkedIn">
+                <FaLinkedin />
+              </a>
+              <a href="mailto:yamontan@uci.edu" className="icon-btn" aria-label="Email">
+                <FaEnvelope />
+              </a>
+            </div>
+          </div>
+          <div className="about-text">
+            <h2>About</h2>
+            <p>
+              I'm an ambitious Computer Engineering undergraduate with research experience in quantum networking
+              and semiconductor memory systems, as well as project work spanning classical systems, networking,
+              and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
+              started with in classical computing. 
+              <br />
+              Please reach out if you're curious about my work, if you have a research or internship opportunity I should know about, or if you just want 
+              to talk quantum networks.
+          </p>
+          </div>
+        </div>
       </section>
 
       {/* Projects */}
@@ -161,23 +139,6 @@ function App() {
           <h2>Skills</h2>
           <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
         </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="section section-contact">
-        <footer>
-        <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="contact-btn">
-          <FaGithub /> GitHub
-        </a>
-        {' · '}
-        <a href="https://www.linkedin.com/in/yanilette-montano-bb9644292/" target="_blank" rel="noreferrer" className="contact-btn">
-          <FaLinkedin /> LinkedIn
-        </a>
-        {' · '}
-        <a href="mailto:yamontan@uci.edu" className="contact-btn">
-          <FaEnvelope /> Email
-        </a>
-        </footer>
       </section>
       </div>
   );
