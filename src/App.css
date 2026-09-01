@@ -1,13 +1,14 @@
-h1, h2, h3, nav, button{
-  font-family:'Press Start 2P', monospace;
-}
-
 h1{
+  font-family: var(--font-script);
+  font-size: 4rem;
+  color: var(--color-account-dark);
   margin-top: 2rem;
 }
 
-body, p{
-  font-family: 'Space Grotesk', sans-serif;
+@media(max-width: 600px){
+  h1{
+    font-size: 2.5rem;
+  }
 }
 
 .nav {
@@ -19,9 +20,6 @@ body, p{
 }
 
 @media (max-width: 600px){
-  h1{
-    font-size: 1.5rem;
-  }
 
   section h2 {
     font-size: 1rem;
@@ -180,13 +178,14 @@ section p{
 }
 
 .section-projects{
-  background-color: var(--color-panel);
+  background-color: var(--color-bg);
   border-top: 3px solid var(--color-button-border);
   border-bottom: 3px solid var(--color-button-border);
 }
 
 .section-skills{
-  background-color: var(--color-bg);
+  border-top: 3px solid var(--color-button-border);
+  background-color: var(--color-panel);
 }
 
 .section-contact{
@@ -223,4 +222,36 @@ section p{
   margin: 0 auto;
   border: 2px solid var(--color-button-border);
   border-radius: 4px;
+}
+
+.experience-entry{
+  display: grid;
+  grid-template-columns: 1.6fr 1.6fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  text-align: left;
+
+}
+
+.experience-image{
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid var(--color-button-border);
+}
+
+.experience-meta{
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 0.75rem;
+}
+
+@media(max-width: 600px){
+  .experience-entry{
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-experience{
+  background-color: var(--color-panel);
 }

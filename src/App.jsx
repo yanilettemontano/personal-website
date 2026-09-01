@@ -78,6 +78,14 @@ function App() {
         </div>
       </section>
 
+      {/*Skills*/}
+      <section id="skills" className="section section-skills">
+        <div className="section-inner">
+          <h2>Skills</h2>
+          <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
+        </div>
+      </section>
+
       {/* Projects */}
       <section id="projects" className="section section-projects">
         <div className="section-inner">
@@ -93,7 +101,6 @@ function App() {
           <figure className="project-figure">
           <img src="/src/assets/Montano_UMass.png" alt="Research Poster for the CQN REU internship"
           className="project-image"/>
-          <figcaption>NSF REU poster through the Center of Quantum Networks. Presented Summer of 2026.</figcaption>
           </figure>
         </div>
 
@@ -108,7 +115,6 @@ function App() {
           <figure className="project-figure">
             <img src="/src/assets/AnteaterChess.png" alt="Anteater Chess Gameplay"
             className="project-image"/>
-            <figcaption>Gameplay snippet of the custom chess game.</figcaption>
           </figure>
         </div>
 
@@ -127,19 +133,46 @@ function App() {
               <source src="/videos/poker-demo.mp4" type="video/mp4"/>
               Your browser doesn't support embedded vidoes.
             </video>
-            <figcaption>Poker game demo - client-server texas hold'em gameplay</figcaption>
           </figure>
           </div>
         </div>
       </section>
 
-      {/*Skills*/}
-      <section id="skills" className="section section-skills">
+      {/* Work Experience */}
+      <section id="experience" className="section section-experience">
         <div className="section-inner">
-          <h2>Skills</h2>
-          <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
+          <h2>Experience</h2>
+
+          <div className="experience-entry">
+            <div className="experience-text">
+              <h3>Student Tutor and Assistant</h3>
+              <p className="experience-meta">UCI Engineering Office of Outreach, Access, and Inclusion · Dec 2025 – Present</p>
+              <p>
+                Tutor undergraduates in math, physics, and higher-division computer engineering
+                courses, helping students build confidence with challenging technical material. Previously supported daily operations in the OAI Study Center, welcome student visitors, assist with 
+                sign-ins, and maintain a clean and stocked space. Help prepare promotional materials, organize inventory, and support OAI programming, including 
+                wellness events, academic workshops, guest speakers, and recruitment activities.
+              </p>
+            </div>
+            <img src="/src/assets/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
+          </div>
+        
+
+        <div className="experience-entry">
+            <div className="experience-text">
+              <h3>Photolithography Process Engineering Intern</h3>
+              <p className="experience-meta">HRL Laboratories · July 2025 – August 2025</p>
+              <p>
+                I assisted in developing photolithography processes to eventually implement on product wafers. I was trained to use relevant tools such as the cluster and stepper systems. I worked with 
+                process engineers to develop standardized photolithography processes.
+              </p>
+            </div>
+            <img src="/src/assets/HRL.PNG" alt="HRL cleanroom group picture" className="experience-image"/>
+          </div>
         </div>
+
       </section>
+
       </div>
   );
 }
