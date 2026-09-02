@@ -77,6 +77,7 @@ function App() {
       <nav className={`sidebar-toc ${tocOpen ? 'open' : ''}`}>
           <a href="#about" onClick={() => setTocOpen(false)}>About</a>
           <a href="#skills" onClick={() => setTocOpen(false)}>Skills</a>
+          <a href="#technical-teams" onClick={() => setTocOpen(false)}>Technical Teams</a>
           <a href="#projects" onClick={() => setTocOpen(false)}>Projects</a>
           <a href="#experience" onClick={() => setTocOpen(false)}>Experience</a>
           <a href="#research" onClick={() => setTocOpen(false)}>Research</a>
@@ -109,7 +110,7 @@ function App() {
           <div className="about-text">
             <h2>About</h2>
             <p>
-              I'm a first-generation latina Computer Engineering undergraduate with research experience in quantum networking
+              I'm a first-generation latina computer engineering undergraduate with research experience in quantum networking
               and semiconductor memory systems, as well as project work spanning classical systems, networking,
               and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
               started with in classical computing. 
@@ -129,12 +130,46 @@ function App() {
         </div>
       </section>
 
+      {/* Technical Teams */}
+      <section id ="technical-teams" className="section section-teams">
+        <div className="section-inner">
+          <h2>Technical Teams</h2>
+          <div className="team-entry">
+            <h3>Flapping Wing Micro Air Vehicle - Flight Controller Subteam</h3>
+            <p className="experience-meta">Dean's Choice Award - 2026 Annual Design Review, UCI Samueli School of Engineering</p>
+            <p>
+              Research and analyzed various custom built flight controllers. Collaborated with other sub-teams to ensure system compatibility 
+              and optimized flight performance. Designed hardware, adapted firmware, test and tune for controlled flights using 
+              Altium, BetaFlight, and microcontroller platforms.
+            </p>
+
+            <a href="https://escholarship.org/uc/item/1kx3x883"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-btn"
+            >
+              View on eScholarship
+            </a>
+          </div>
+          <br />
+          <div className="team-entry">
+            <h3>Underwater Robotics Project at UCI - Computer Vision and Perception Subteam</h3>
+            <p className="experience-meta">Sponsored by the U.S. Navy</p>
+            <p>
+              Explore and develop computer vision pipelines for autonomous perception tasks. Learning and contributing to object detection, 
+              image processing, and sensor-based navigation in underwater environments, while collaborating with the team on system integration 
+              and testing.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Projects */}
       <section id="projects" className="section section-projects">
         <div className="section-inner">
           <h2>Projects</h2>
 
-        <div>
+          <div>
           <h3>Anteater Chess -- Custom Board Evaluator</h3>
           <p><em>C, Linux, Git</em></p>
           <p>
@@ -146,9 +181,9 @@ function App() {
             <img src="/src/assets/AnteaterChess.png" alt="Anteater Chess Gameplay"
             className="project-image"/>
           </figure>
-        </div>
+          </div>
 
-        <div>
+          <div>
           <h3>Client-Server Poker Game</h3>
           <p><em>C/C++, GTK, TCP sockets</em></p>
           <p>Designed the deck management system for a client-server poker game, fixed a Fisher-Yates
@@ -165,6 +200,34 @@ function App() {
             </video>
           </figure>
           </div>
+        
+        <br />
+        <div>
+          <h3>Matcha Study Timer App</h3>
+          <p><em>Electron, JavaScript, Figma, Pixsquare</em></p>
+          <p>
+            Developed a Pomodoro-style study timer desktop application, 
+            implementing core timing functionality and user interaction features to 
+            support focused study sessions. Designed and integrated a customizable 
+            interface to select 4 study durations, a timer letting the user know there 
+            study time is up and a reset button to restart the process. I also created 
+            original pixel-art icons and visual assets using PixSquare to enhance the
+            user experience and overall design of the application. Structured the application 
+            with multiple pages including a start screen, timer selection, timer interface and 
+            a reset page, This project demonstrated my skills in front-end development, user 
+            interface design and state management.
+          </p>
+          <figure className="project-figure">
+            <video className="video-wrapper"
+            controls
+            muted
+            playsInline
+            >
+              <source src="/videos/study-timer.mp4" type="video/mp4"/>
+              Your browser doesn't support embedded vidoes.
+            </video>
+          </figure>
+        </div>
         </div>
       </section>
 
@@ -199,17 +262,31 @@ function App() {
             </div>
             <img src="/src/assets/HRL.PNG" alt="HRL cleanroom group picture" className="experience-image"/>
           </div>
+
+          <div className="experience-entry">
+          <div className="experience-text">
+            <h3>Math and Computer Science Tutor</h3>
+            <p className="experience-meta">Los Angeles Pierce College · September 2024 – June 2025</p>
+            <p>
+              I help students grasp complex topics across a wide range of courses including Algebra, Precalculus, Trigonometry, Calculus I–III, Linear Algebra, Ordinary Differential Equations. 
+              For programming courses, I provide guidance on problem-solving strategies, coding best practices, and debugging techniques in Intro to C++, data structures and algorithms, object-oriented programming in C++, 
+              computer architecture. I’ve also participated in tutoring trainings, workshops, and conferences to continually strengthen my approach as an educator and mentor.
+            </p>
+          </div>
+          <img src="src/assets/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
         </div>
 
+        </div>
       </section>
 
+      {/* Research Section */}
       <section id="research" className="section section-research">
         <div className="section-inner">
           <h2>Research</h2>
 
           <div className="research-entry">
             <h3>Adaptive Flow Control for Quantum TCP</h3>
-            <p className="experience-meta">NSF REU, Krastanov Lab - Center for Quantum Networks · Summer 2025</p>
+            <p className="experience-meta">NSF REU, Krastanov Lab - Center for Quantum Networks · Summer 2026</p>
             <p>
               Designed and implemented per-flow AIMD congestion control and PI-based Active Queue
               Management with ECN signaling for QuantumSavory.jl, an open-source quantum network
@@ -227,14 +304,50 @@ function App() {
             slidesPerView={1} 
             className="project-carousel">
             <SwiperSlide>
-              <img src="/src/assets/CQN-Poster-Session.png" alt="CQN Poster Session" />
-            </SwiperSlide>
-            <SwiperSlide>
               <img src="/src/assets/Montano_UMass.png" alt="NSF research poster" />
             </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/assets/CQN-Poster-Session.png" alt="CQN Poster Session" />
+            </SwiperSlide>
+            
             </Swiper>
             
           </div>
+
+          <div className="research-entry">
+            <h3>Machine Learning Applications in Phase Change Memory Cell Health</h3>
+            <p className="experience-meta">SFS2 REU, CSUN Department of Computer Science · Summer 2025</p>
+            <p>
+              Investigated the use of machine learning techniques to predict the health and reliability of Phase Change Memory (PCM) cells. 
+              Developed and evaluated models using logistic regression and decision trees, achieving up to 98.4% accuracy with the decision tree model.
+            </p>
+
+            <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20} 
+            slidesPerView={1} 
+            className="project-carousel"
+            >
+              <SwiperSlide>
+                <img src="/src/assets/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/src/assets/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+
+          <div className="research-entry">
+            <h3>Discrete Mathematics Research</h3>
+            <p className="experience-meta"> NSF-Funded REU, LAPC & UCLA · Fall 2024</p>
+            <p>
+              I collaborated with UCLA graduate students to analyze transfer systems with partially ordered sets. Co-authored 
+              research paper and aimed to make our findings publishable. We presented our findings at the University of Texas-Arlington 
+              in May 9-10, 2025 to faculty and peers.
+            </p>
+          </div>
+          
         </div>
       </section>
 
@@ -247,6 +360,7 @@ function App() {
             Logisitic Regression and decision tree models to predict Phase Change Memory cell health;
             decision tree model achieved up to 98.4% accuracy.
           </p>
+          <a href="/src/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
         </div>
       </section>
 

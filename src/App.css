@@ -178,7 +178,7 @@ section p{
 }
 
 .section-projects{
-  background-color: var(--color-bg);
+  background-color: var(--color-panel);
   border-top: 3px solid var(--color-button-border);
   border-bottom: 3px solid var(--color-button-border);
 }
@@ -254,17 +254,17 @@ section p{
 }
 
 .section-experience{
-  background-color: var(--color-panel);
-  border-bottom: 3px solid var(--color-button-border);
-}
-
-.section-research{
   background-color: var(--color-bg);
   border-bottom: 3px solid var(--color-button-border);
 }
 
-.section-publications{
+.section-research{
   background-color: var(--color-panel);
+  border-bottom: 3px solid var(--color-button-border);
+}
+
+.section-publications{
+  background-color: var(--color-bg);
   border-bottom: 3px solid var(--color-button-border);
 }
 
@@ -291,7 +291,7 @@ section p{
 
 .pd-list li{
   padding: 0.75rem 1rem;
-  background-color: var(--color-panel);
+  background-color: var(--color-bg);
   border-radius: 8px;
   border-left: 4px solid var(--color-accent-mid);
 }
@@ -373,4 +373,25 @@ section p{
 
 body{
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-teams{
+  background-color: var(--color-bg);
+  border-top: 3px solid var(--color-button-border);
+}
+
+.team-entry{
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.team-entry .experience-meta{
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+.section-pd{
+  background-color: var(--color-panel);
 }
