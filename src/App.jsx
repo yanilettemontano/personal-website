@@ -1,6 +1,8 @@
 import './App.css'
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaBars } from 'react-icons/fa'
 import { useState, useEffect, use } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
 
 function useTypewriter(text, speed = 60){
   const [displayed, setDisplayed] = useState('')
@@ -38,9 +40,24 @@ const fadeUp ={
 
 function App() {
   const typedTitle = useTypewriter('Personal Portfolio', 70)
+  const [tocOpen, setTocOpen] = useState(false)
 
   return (
     <div>
+      <button className="toc-toggle" onClick={() => setTocOpen(!tocOpen)} aria-label="Toggle Table of Contents">
+        <FaBars />
+      </button>
+
+      <nav className={`sidebar-toc ${tocOpen ? 'open' : ''}`}>
+          <a href="#about" onClick={() => setTocOpen(false)}>About</a>
+          <a href="#skills" onClick={() => setTocOpen(false)}>Skills</a>
+          <a href="#projects" onClick={() => setTocOpen(false)}>Projects</a>
+          <a href="#experience" onClick={() => setTocOpen(false)}>Experience</a>
+          <a href="#research" onClick={() => setTocOpen(false)}>Research</a>
+          <a href="#publications" onClick={() => setTocOpen(false)}>Publications</a>
+          <a href="#professional-development" onClick={() => setTocOpen(false)}>Professional Development</a>
+      </nav>
+
       {/* Hero*/}
       <section id="header" className="section section-header">
         <h1>{typedTitle}<span className="cursor">|</span></h1>
@@ -90,19 +107,6 @@ function App() {
       <section id="projects" className="section section-projects">
         <div className="section-inner">
           <h2>Projects</h2>
-        <div>
-          <h3>QTCP - Quantum TCP Congestion Control</h3>
-          <p><em>QuantumSavory.jl, Julia, Git, GitHub, TCP networking</em></p>
-          <p>
-            Designed and implemented per-flow AIMD congestion control and PI-based Active 
-            Queue Management with ECN signaling for quantum networks, replacing a fixed global window with adaptive, fidelity-driven tuning.
-            Fixed multiple race conditions in multi-hop entanglement swapping. 
-          </p>
-          <figure className="project-figure">
-          <img src="/src/assets/Montano_UMass.png" alt="Research Poster for the CQN REU internship"
-          className="project-image"/>
-          </figure>
-        </div>
 
         <div>
           <h3>Anteater Chess -- Custom Board Evaluator</h3>
@@ -171,6 +175,63 @@ function App() {
           </div>
         </div>
 
+      </section>
+
+      <section id="research" className="section section-research">
+        <div className="section-inner">
+          <h2>Research</h2>
+
+          <div className="research-entry">
+            <h3>Adaptive Flow Control for Quantum TCP</h3>
+            <p className="experience-meta">NSF REU, Krastanov Lab - Center for Quantum Networks · Summer 2025</p>
+            <p>
+              Designed and implemented per-flow AIMD congestion control and PI-based Active Queue
+              Management with ECN signaling for QuantumSavory.jl, an open-source quantum network
+              simulator - replacing a fixed transmission window with real-time, fidelity-driven
+              tuning. Across four network topologies, achieved mean fidelity of 0.93-0.95 versus 0.98-0.92
+              for the fixed-window baseline, consistently holding minimum fidelity above 
+              the entanglement threshold. Also found and fixed three race conditions in multi-hop entanglement
+              swapping. Findings are being prepared for IEEE conference submission.
+            </p>
+
+            <Swiper spaceBetween={20} slidesPerView={1} className="project-carousel">
+            <SwiperSlide>
+              <img src="/src/assets/CQN-Poster-Session.png" alt="CQN Poster Session" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/assets/Montano_UMass.png" alt="NSF research poster" />
+            </SwiperSlide>
+            </Swiper>
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" className="section section-publications">
+        <div className="section-inner">
+          <h2>Publications</h2>
+          <p>
+            <strong>CARE-PCM: Classification and Analysis of Reliability with Efficient Models for PCM</strong><br />
+            2026 IEEE 16th Annual Computing and Communication Workshop and Conference (CCWC), January 2026<br />
+            Logisitic Regression and decision tree models to predict Phase Change Memory cell health;
+            decision tree model achieved up to 98.4% accuracy.
+          </p>
+        </div>
+      </section>
+
+      <section id="professional-development" className="section section-pd">
+        <div className="section-inner">
+          <h2>Professional Development</h2>
+          <ul className="pd-list">
+            <li>Center for Quantum Networks post-doc and student retreat</li>
+            <li>Global Qiskit Summer School - IBM Quantum</li>
+            <li>QNumerics Summer School</li>
+            <li>CNSI and UCLA Samueli’s Semiconductor Program</li>
+            <li>UCLA IEEE Electronics Workshop</li>
+            <li>2024 SHPE National Conference Attendee</li>
+            <li>Online Stanford web development course</li>
+          </ul>
+        </div>
       </section>
 
       </div>
