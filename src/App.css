@@ -342,3 +342,35 @@ section p{
 .sidebar-toc a:hover{
   color: var(--color-accent-mid);
 }
+
+.project-carousel .swiper-button-next,
+.project-carousel .swiper-button-prev{
+  color: var(--color-accent-dark);
+}
+
+.project-carousel .swiper-button-next:after,
+.project-carousel .swiper-button-prev:after{
+  font-size: 1.2rem;
+}
+
+.theme-toggle{
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-accent-dark);
+  color: var(--color-bg);
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body{
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -1,8 +1,11 @@
 import './App.css'
 import { FaGithub, FaLinkedin, FaEnvelope, FaBars } from 'react-icons/fa'
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import { FaSun, FaMoon } from 'react-icons/fa'
 import 'swiper/css'
+import 'swiper/css/navigation'
 
 function useTypewriter(text, speed = 60){
   const [displayed, setDisplayed] = useState('')
@@ -41,9 +44,32 @@ const fadeUp ={
 function App() {
   const typedTitle = useTypewriter('Personal Portfolio', 70)
   const [tocOpen, setTocOpen] = useState(false)
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved) setTheme(saved)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
     <div>
+      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
+        {theme === 'light' ? <FaMoon /> : <FaSun />}
+      </button>
+
       <button className="toc-toggle" onClick={() => setTocOpen(!tocOpen)} aria-label="Toggle Table of Contents">
         <FaBars />
       </button>
@@ -83,7 +109,7 @@ function App() {
           <div className="about-text">
             <h2>About</h2>
             <p>
-              I'm an ambitious Computer Engineering undergraduate with research experience in quantum networking
+              I'm a first-generation latina Computer Engineering undergraduate with research experience in quantum networking
               and semiconductor memory systems, as well as project work spanning classical systems, networking,
               and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
               started with in classical computing. 
@@ -194,7 +220,12 @@ function App() {
               swapping. Findings are being prepared for IEEE conference submission.
             </p>
 
-            <Swiper spaceBetween={20} slidesPerView={1} className="project-carousel">
+            <Swiper 
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20} 
+            slidesPerView={1} 
+            className="project-carousel">
             <SwiperSlide>
               <img src="/src/assets/CQN-Poster-Session.png" alt="CQN Poster Session" />
             </SwiperSlide>

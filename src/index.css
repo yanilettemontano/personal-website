@@ -16,6 +16,17 @@
   --font-script: 'Cherry Bomb One', cursive;
 }
 
+[data-theme ='dark']{
+  --color-bg: #1e1512;
+  --color-panel: #2b1f1a;
+  --color-accent-dark: #d9c3a8;
+  --color-accent-mid: #c9a67d;
+  --color-button: #4a3428;
+  --color-button-border: #d9c3a8;
+  --color-text-dark: #f0e6d8;
+  --color-text-light: #1e1512;
+}
+
 *{
   box-sizing: border-box;
   margin: 0;
