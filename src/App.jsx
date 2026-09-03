@@ -94,7 +94,7 @@ function App() {
       <section id="about" className="section section-about">
         <div className ="section-inner about-layout">
           <div className ="about-photo">
-            <img src="/src/assets/headshot.jpg" alt="Headshot of Yanilette Montano" />
+            <img src="/src/assets/images/headshot.jpg" alt="Headshot of Yanilette Montano" />
             <div className="about-contact-buttons">
               <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="icon-btn" aria-label="Github">
                 <FaGithub />
@@ -143,6 +143,21 @@ function App() {
               Altium, BetaFlight, and microcontroller platforms.
             </p>
 
+            <Swiper 
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20} 
+            slidesPerView={1} 
+            className="project-carousel">
+            <SwiperSlide>
+              <img src="/src/assets/images/Fall_2025_Meeting.jpg" alt="Fall 2025 End of Quarter Meeting Group Photo" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/assets/images/Annual-Design-Review.jpg" alt="Annual Design Review" />
+            </SwiperSlide>
+            
+            </Swiper>
+
             <a href="https://escholarship.org/uc/item/1kx3x883"
             target="_blank"
             rel="noreferrer"
@@ -150,6 +165,7 @@ function App() {
             >
               View on eScholarship
             </a>
+
           </div>
           <br />
           <div className="team-entry">
@@ -178,7 +194,7 @@ function App() {
             for a team AI that won every tournament game. Out of 32 teams, our team placed 4th in the final tournament.
           </p>
           <figure className="project-figure">
-            <img src="/src/assets/AnteaterChess.png" alt="Anteater Chess Gameplay"
+            <img src="/src/assets/images/AnteaterChess.png" alt="Anteater Chess Gameplay"
             className="project-image"/>
           </figure>
           </div>
@@ -247,7 +263,7 @@ function App() {
                 wellness events, academic workshops, guest speakers, and recruitment activities.
               </p>
             </div>
-            <img src="/src/assets/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
+            <img src="/src/assets/images/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
           </div>
         
 
@@ -260,7 +276,7 @@ function App() {
                 process engineers to develop standardized photolithography processes.
               </p>
             </div>
-            <img src="/src/assets/HRL.PNG" alt="HRL cleanroom group picture" className="experience-image"/>
+            <img src="/src/assets/images/HRL.PNG" alt="HRL cleanroom group picture" className="experience-image"/>
           </div>
 
           <div className="experience-entry">
@@ -273,7 +289,7 @@ function App() {
               computer architecture. I’ve also participated in tutoring trainings, workshops, and conferences to continually strengthen my approach as an educator and mentor.
             </p>
           </div>
-          <img src="src/assets/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
+          <img src="src/assets/images/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
         </div>
 
         </div>
@@ -304,10 +320,10 @@ function App() {
             slidesPerView={1} 
             className="project-carousel">
             <SwiperSlide>
-              <img src="/src/assets/Montano_UMass.png" alt="NSF research poster" />
+              <img src="/src/assets/images/Montano_UMass.png" alt="NSF research poster" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/src/assets/CQN-Poster-Session.png" alt="CQN Poster Session" />
+              <img src="/src/assets/images/CQN-Poster-Session.png" alt="CQN Poster Session" />
             </SwiperSlide>
             
             </Swiper>
@@ -330,10 +346,10 @@ function App() {
             className="project-carousel"
             >
               <SwiperSlide>
-                <img src="/src/assets/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
+                <img src="/src/assets/images/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/src/assets/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
+                <img src="/src/assets/images/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -360,7 +376,7 @@ function App() {
             Logisitic Regression and decision tree models to predict Phase Change Memory cell health;
             decision tree model achieved up to 98.4% accuracy.
           </p>
-          <a href="/src/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
+          <a href="/src/assets/pdf/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
         </div>
       </section>
 

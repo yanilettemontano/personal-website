@@ -395,3 +395,21 @@ body{
 .section-pd{
   background-color: var(--color-panel);
 }
+
+.team-entry{
+  text-align: center;
+}
+
+.team-entry .contact-btn{
+  display: infline-flex;
+  width: auto;
+  margin-top: 1.25rem;
+  justify-content: center;
+}
+
+.section-inner .contact-btn{
+  display: inline-flex;
+  width: auto;
+  margin-top: 1.25rem;
+  justify-content: center;
+}
