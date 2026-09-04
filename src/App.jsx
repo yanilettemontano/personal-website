@@ -40,40 +40,112 @@ function useTypewriter(text, speed = 60){
 
 function SkillMeter({ skill }){
   const [open, setOpen] = useState(false)
-  const maxLevel = 5
+  const [hovered, setHovered] = useState(false)
 
   return (
-    <div className="skill-item">
+    <div 
+      className="skill-item"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <button className="skill-header" onClick={() => setOpen(!open)}>
         <span className="skill-name">{skill.name}</span>
-        <span className="skill-beans">
-          {Array.from({ length: maxLevel }).map((_, i) => (
-          <GiCoffeeBeans
-            key={i}
-            className={i < skill.level ? 'bean filled' : 'bean'}
-            />
-          ))}
-        </span>
       </button>
 
+      <div className="coffee-bar-wrapper">
+        <span className="bar-label">Decaf</span>
+        <div className="coffee-bar-track">
+          <div className="coffee-bar-fill" style={{ width: `${skill.level}%`}}>
+            <GiCoffeeBeans className="bar-bean" />
+          </div>
+        </div>
+        <span className="bar-label">Triple Espresso</span>
+      </div>
+
       <AnimatePresence>
-        {open && (
+        {hovered && !open && (
           <motion.div
-          initial={{ height: 0, opacity: 0}}
-          animate={{ height: 'auto', opacity: 1}}
-          exit ={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="skill-detail"
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="skill-tooltip"
           >
-            <p className="skill-intensity">{skill.intensity}</p>
             <ul>
-              {skill.usedIn.map((project) => (
+              {skill.usedIn.map((project) =>(
                 <li key={project}>{project}</li>
               ))}
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+          initial={{height: 0, opacity: 0}}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="skill-detail"
+          >
+            <ul>
+              {skill.usedIn.map((project) => (
+                <li key={project}>{project}</li>
+              ))}
+            </ul>
+          </motion.div>
+        )
+        }
+      </AnimatePresence>
+    </div>
+  )
+}
+
+function CourseworkTimeline() {
+  const [activeIndex, setActiveIndex] = useState(null)
+
+  return (
+    <div className="timeline-vertical">
+      {timeline.map((point, index) => (
+        <div
+          key={point.term}
+          className={`timeline-row ${index % 2 === 0 ? 'left' : 'right'}`}
+        >
+          <div className="timeline-card-wrapper">
+            <div
+              className="timeline-card"
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+            >
+              <span className="timeline-term">{point.term}</span>
+
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="timeline-courses"
+                  >
+                    <ul>
+                      {point.courses.map((course) => (
+                        <li key={course}>{course}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <span className={`timeline-circle ${point.completed ? 'filled' : ''} ${point.current ? 'current' : ''}`} />
+
+          <div className="timeline-spacer" />
+        </div>
+      ))}
     </div>
   )
 }
@@ -113,23 +185,30 @@ const professionalDevelopment = [
   const skills =[
     {
       name: 'C/C++',
-      level: 5, //out of 5
-      intensity: 'Triple espresso',
+      level: 95, //percentage fill, 0-100
       usedIn: ['Anteater Chess, Client-Server Poker Game, Flapping Wing MAV Firmware'],
     },
     {
       name: 'Python',
-      level: 4,
-      intensity: 'Espresso',
-      usedIn: ['Machine Learning for Phase Change Memory, QuantumSavory.jl, Computer Vision and Perception for Underwater Robotics'],
+      level: 60,
+      usedIn: ['Machine Learning for Phase Change Memory, Computer Vision for Underwater Robotics'],
     },
     {
       name: 'Julia',
-      level: 3,
-      intensity: 'Cortado',
+      level: 80,
       usedIn: ['QuantumSavory.jl, Quantum Information Research'],
     },
   ]
+  const timeline = [
+  { term: 'Fall 2025', completed: true, courses: ['EECS 31 — Intro to Digital Systems', 'EECS 50 — Discrete-Time Signals and Systems', 'EECS 70B/LB — Network Analysis II & Lab'] },
+  { term: 'Winter 2026', completed: true, courses: ['EECS 31L — Intro to Digital Logic Lab', 'EECS 114 — Engineering Data Structures and Algorithms', 'EECS 170A/LA — Electronics I & Lab'] },
+  { term: 'Spring 2026', completed: true, courses: ['EECS 55 — Engineering Probability', 'EECS 22L — Software Engineering Project in C', 'EECS 170B/LB — Electronics II & Lab'] },
+  { term: 'Fall 2026', completed: false, current: true, courses: ['EECS 112 — Organization of Digital Computers', 'EECS 145 — Electrical Engineering Analysis', 'EECS 148 — Computer Networks', 'EECS 195 — Drones'] },
+  { term: 'Winter 2027', completed: false, courses: ['EECS 112L — Organization of Digital Computers Lab', 'ENGR 190W — Communications in the Professional World', 'EECS 150 — Continuous-Time Signals and Systems'] },
+  { term: 'Spring 2027', completed: false, courses: ['EECS 111 — System Software', 'EECS 113 — Processor Hardware/Software Interfaces', 'EECS 198 — Presenior Design', 'EECS 125 — Intro to Machine Learning for Engineers'] },
+  { term: 'Fall 2027', completed: false, courses: ['EECS 159A — Senior Design Project I', 'EECS 118 — Data and Knowledge Science and Engineering', 'EECS 119 — VLSI', 'Engr 93 — Public and Professional Service in Engineering'] },
+  { term: 'Winter 2028', completed: false, courses: ['EECS 159B — Senior Design Project II', 'EECS 141A — Communication Systems I', 'EECS 152B — Digital Signal Processing Design and Lab'] },
+]
 
 function App() {
   const typedTitle = useTypewriter('Personal Portfolio', 70)
@@ -178,6 +257,7 @@ function App() {
           <a href="#research" onClick={() => setTocOpen(false)}>Research</a>
           <a href="#publications" onClick={() => setTocOpen(false)}>Publications</a>
           <a href="#professional-development" onClick={() => setTocOpen(false)}>Professional Development</a>
+          <a href="#coursework" onClick={() => setTocOpen(false)}>Coursework</a>
       </nav>
 
       {/* Hero*/}
@@ -602,6 +682,14 @@ function App() {
         </div>
       ))}
     </div>
+  </div>
+</section>
+
+<section id="coursework" className="section section-coursework">
+  <div className="section-inner">
+    <h2>Coursework</h2>
+    <p className="coursework-note">Expected graduation: March 2028</p>
+    <CourseworkTimeline />
   </div>
 </section>
 
