@@ -4,6 +4,7 @@ import { useState, useEffect} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import { FaSun, FaMoon } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
@@ -41,10 +42,42 @@ const fadeUp ={
   visible: { opacity: 1, y: 0},
 }
 
+const professionalDevelopment = [
+    {
+    title: 'Global Qiskit Summer School',
+    organization: 'IBM Quantum',
+    description: 'A two-week intensive program covering quantum computing fundamentals, Qiskit programming, and hands-on labs with IBM quantum hardware.',
+    images: ['/src/assets/images/qiskit-summer-school.png'],
+    },
+    {
+      title: 'QNumerics Summer School',
+      organization: 'QNumerics',
+      description: 'Focused training on numerical methods and simulation techniques for quantum systems.',
+      images: ['/src/assets/images/qnumerics-summer-school.png'],
+    },
+    {
+      title: 'CQN Student & Postdoc Retreat',
+      organization: 'Center for Quantum Networks',
+      description: 'A retreat for students and postdocs to present research, attend workshops, and network with peers in the field of quantum networking.',
+      images: ['/src/assets/images/cqn-retreat.jpg'],
+    },
+    {
+      title: 'CNSI and UCLA Samueli’s semiconductor program',
+      organization: 'CNSI and UCLA Samueli',
+      description: 'A program focused on semiconductor research, including workshops and lab sessions on fabrication and characterization techniques.',
+      images: ['/src/assets/images/csni-group.png', '/src/assets/images/projector.png'],
+    },
+  ]
+
 function App() {
   const typedTitle = useTypewriter('Personal Portfolio', 70)
   const [tocOpen, setTocOpen] = useState(false)
   const [theme, setTheme] = useState('light')
+
+  const[openIndex, setOpenIndex] = useState(null)
+  const toggleCard = (index) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -90,6 +123,16 @@ function App() {
         <h1>{typedTitle}<span className="cursor">|</span></h1>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       {/* About */}
       <section id="about" className="section section-about">
         <div className ="section-inner about-layout">
@@ -122,6 +165,16 @@ function App() {
         </div>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       {/*Skills*/}
       <section id="skills" className="section section-skills">
         <div className="section-inner">
@@ -129,6 +182,16 @@ function App() {
           <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
         </div>
       </section>
+
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
 
       {/* Technical Teams */}
       <section id ="technical-teams" className="section section-teams">
@@ -180,13 +243,23 @@ function App() {
         </div>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       {/* Projects */}
       <section id="projects" className="section section-projects">
         <div className="section-inner">
           <h2>Projects</h2>
 
           <div>
-          <h3>Anteater Chess -- Custom Board Evaluator</h3>
+          <h3>Anteater Chess - Custom Board Evaluator</h3>
           <p><em>C, Linux, Git</em></p>
           <p>
             Built the full board evalation module for a 10 by 8 chess variant, focusing on the following features such as, Material scoring,
@@ -247,6 +320,16 @@ function App() {
         </div>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       {/* Work Experience */}
       <section id="experience" className="section section-experience">
         <div className="section-inner">
@@ -276,7 +359,7 @@ function App() {
                 process engineers to develop standardized photolithography processes.
               </p>
             </div>
-            <img src="/src/assets/images/HRL.PNG" alt="HRL cleanroom group picture" className="experience-image"/>
+            <img src="/src/assets/images/HRL.png" alt="HRL cleanroom group picture" className="experience-image"/>
           </div>
 
           <div className="experience-entry">
@@ -294,6 +377,16 @@ function App() {
 
         </div>
       </section>
+
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
 
       {/* Research Section */}
       <section id="research" className="section section-research">
@@ -367,6 +460,16 @@ function App() {
         </div>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       <section id="publications" className="section section-publications">
         <div className="section-inner">
           <h2>Publications</h2>
@@ -380,20 +483,61 @@ function App() {
         </div>
       </section>
 
+      <div className="wave-divider">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
+            fill="var(--color-accent-mid)"
+            opacity="0.3"
+          />
+          </svg>
+      </div>
+
       <section id="professional-development" className="section section-pd">
         <div className="section-inner">
           <h2>Professional Development</h2>
-          <ul className="pd-list">
-            <li>Center for Quantum Networks post-doc and student retreat</li>
-            <li>Global Qiskit Summer School - IBM Quantum</li>
-            <li>QNumerics Summer School</li>
-            <li>CNSI and UCLA Samueli’s Semiconductor Program</li>
-            <li>UCLA IEEE Electronics Workshop</li>
-            <li>2024 SHPE National Conference Attendee</li>
-            <li>Online Stanford web development course</li>
-          </ul>
+
+          <div className="pd-list">
+            {professionalDevelopment.map((item, index) => (
+              <div key={item.title} className="pd-item">
+                <button className="pd-button" onClick={() => toggleCard(index)}>
+                  <span>{item.title}</span>
+                  <span className={`pd-chevron ${openIndex === index ? 'open' : ''}`}>▾</span>
+                </button>
+
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      className="pd-panel"
+                  >
+                    <p className="experience-meta">{item.org}</p>
+                    <p>{item.description}</p>
+
+                    <Swiper
+                      modules={[Navigation]}
+                      navigation
+                      spaceBetween={16}
+                      slidesPerView={1}
+                      className="pd-carousel"
+                    >
+                      {item.images.map((src) => (
+                        <SwiperSlide key={src}>
+                          <img src={src} alt={item.title} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       </div>
   );
