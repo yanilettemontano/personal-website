@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
+import { GiCoffeeBeans } from 'react-icons/gi'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
@@ -37,6 +38,46 @@ function useTypewriter(text, speed = 60){
   return displayed
 }
 
+function SkillMeter({ skill }){
+  const [open, setOpen] = useState(false)
+  const maxLevel = 5
+
+  return (
+    <div className="skill-item">
+      <button className="skill-header" onClick={() => setOpen(!open)}>
+        <span className="skill-name">{skill.name}</span>
+        <span className="skill-beans">
+          {Array.from({ length: maxLevel }).map((_, i) => (
+          <GiCoffeeBeans
+            key={i}
+            className={i < skill.level ? 'bean filled' : 'bean'}
+            />
+          ))}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+          initial={{ height: 0, opacity: 0}}
+          animate={{ height: 'auto', opacity: 1}}
+          exit ={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="skill-detail"
+          >
+            <p className="skill-intensity">{skill.intensity}</p>
+            <ul>
+              {skill.usedIn.map((project) => (
+                <li key={project}>{project}</li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 const fadeUp ={
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0},
@@ -62,10 +103,31 @@ const professionalDevelopment = [
       images: ['/src/assets/images/cqn-retreat.jpg'],
     },
     {
-      title: 'CNSI and UCLA Samueli’s semiconductor program',
+      title: 'CNSI and UCLA Samueli’s Semiconductor Program',
       organization: 'CNSI and UCLA Samueli',
       description: 'A program focused on semiconductor research, including workshops and lab sessions on fabrication and characterization techniques.',
       images: ['/src/assets/images/csni-group.png', '/src/assets/images/projector.png'],
+    },
+  ]
+
+  const skills =[
+    {
+      name: 'C/C++',
+      level: 5, //out of 5
+      intensity: 'Triple espresso',
+      usedIn: ['Anteater Chess, Client-Server Poker Game, Flapping Wing MAV Firmware'],
+    },
+    {
+      name: 'Python',
+      level: 4,
+      intensity: 'Espresso',
+      usedIn: ['Machine Learning for Phase Change Memory, QuantumSavory.jl, Computer Vision and Perception for Underwater Robotics'],
+    },
+    {
+      name: 'Julia',
+      level: 3,
+      intensity: 'Cortado',
+      usedIn: ['QuantumSavory.jl, Quantum Information Research'],
     },
   ]
 
@@ -179,7 +241,11 @@ function App() {
       <section id="skills" className="section section-skills">
         <div className="section-inner">
           <h2>Skills</h2>
-          <p>C/C++· Julia · Python · Networking (TCP/IP, sockets) · Git · Linux · Quantum Information Fundamentals</p>
+          <div className="skills-list">
+            {skills.map((skill) => (
+              <SkillMeter key={skill.name} skill={skill} />
+            ))}
+          </div>
         </div>
       </section>
 

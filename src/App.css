@@ -460,3 +460,72 @@ body{
   display: block;
 }
 
+.skills-list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.skill-item{
+  border: 2px solid var(--color-button-border);
+  border-radius: 8px;
+  background-color: var(--color-panel);
+  overflow: hidden;
+}
+
+.skill-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0.9rem 1.1rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.skill-beans{
+  display: flex;
+  gap: 3px;
+}
+
+.bean{
+  font-size: 1rem;
+  color: var(--color-panel);
+  stroke: var(--color-button-border);
+}
+
+.bean.filled{
+  color: var(--color-accent-mid);
+}
+
+.skill-detail{
+  padding: 0 1.1rem 1rem;
+}
+
+.skill-intensity{
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--color-accent-mid);
+  margin-bottom: 0.5rem;
+}
+
+.skill-detail ul{
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+.skill-detail li::before{
+  content: '☕ ';
+}
+
+.skill-detail li{
+  padding: 0.2rem 0;
+}
