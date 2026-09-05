@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-My personal portfolio site — built to showcase my research, projects, technical teams, and coursework as a Computer Engineering student at UC Irvine.
+My personal portfolio site which is built to showcase my research, projects, technical teams, and coursework as a Computer Engineering student at UC Irvine.
 
 **Live site:** https://personal-website-delta-ten-53.vercel.app/
 
@@ -51,7 +51,7 @@ Then open `http://localhost:5173` in your browser.
 
 ## Deployment
 
-Deployed via [Vercel/Netlify — pick whichever you used] with automatic redeploys on every push to `main`.
+Deployed via Vercel with automatic redeploys on every push to `main`.
 
 ## Contact
 
