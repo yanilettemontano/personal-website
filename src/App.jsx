@@ -1,5 +1,5 @@
 import './App.css'
-import { FaGithub, FaLinkedin, FaEnvelope, FaBars } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaCheck } from 'react-icons/fa'
 import { useState, useEffect} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
@@ -146,6 +146,31 @@ function CourseworkTimeline() {
           <div className="timeline-spacer" />
         </div>
       ))}
+    </div>
+  )
+}
+
+function EmailButton({ email }){
+  const [copied, setCopied] = useState(false)
+
+  const handleClick = async (e) => {
+    e.preventDefault()
+    try{
+      await navigator.clipboard.writeText(email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch{
+      //Clipboard failed - fall back to mailto as last resort
+      window.location.href = `mailto:${email}`
+    }
+  }
+
+  return (
+    <div className="email-btn-wrapper">
+      <button className="icon-btn" onClick={handleClick} aria-label="Copy email address">
+        {copied ? <FaCheck /> : <FaEnvelope />}
+      </button>
+      {copied && <span className="copy-toast">Copied!</span>}
     </div>
   )
 }
@@ -317,9 +342,7 @@ function App() {
               <a href="https://www.linkedin.com/in/yanilette-montano-bb9644292/" target="_blank" rel="noreferrer" className="icon-btn" aria-label="LinkedIn">
                 <FaLinkedin />
               </a>
-              <a href="mailto:yamontan@uci.edu" className="icon-btn" aria-label="Email">
-                <FaEnvelope />
-              </a>
+              <EmailButton email ="yamontan@uci.edu" />
             </div>
           </div>
           <div className="about-text">
@@ -593,7 +616,7 @@ function App() {
               Designed and implemented per-flow AIMD congestion control and PI-based Active Queue
               Management with ECN signaling for QuantumSavory.jl, an open-source quantum network
               simulator - replacing a fixed transmission window with real-time, fidelity-driven
-              tuning. Across four network topologies, achieved mean fidelity of 0.93-0.95 versus 0.98-0.92
+              tuning. Across four network topologies, achieved mean fidelity of 0.93-0.95 versus 0.89-0.92
               for the fixed-window baseline, consistently holding minimum fidelity above 
               the entanglement threshold. Also found and fixed three race conditions in multi-hop entanglement
               swapping. Findings are being prepared for IEEE conference submission.
@@ -672,7 +695,7 @@ function App() {
             Logisitic Regression and decision tree models to predict Phase Change Memory cell health;
             decision tree model achieved up to 98.4% accuracy.
           </p>
-          <a href="/src/assets/pdf/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
+          <a href="/pdf/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
         </div>
       </section>
 
@@ -707,7 +730,7 @@ function App() {
                       transition={{ duration: 0.35, ease: 'easeInOut' }}
                       className="pd-panel"
                   >
-                    <p className="experience-meta">{item.org}</p>
+                    <p className="experience-meta">{item.organization}</p>
                     <p>{item.description}</p>
 
                     <Swiper
