@@ -1,16 +1,60 @@
-# React + Vite
+# Personal Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal portfolio site — built to showcase my research, projects, technical teams, and coursework as a Computer Engineering student at UC Irvine.
 
-Currently, two official plugins are available:
+**Live site:** https://personal-website-delta-ten-53.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About
 
-## React Compiler
+A coffee-themed portfolio (yes, really) featuring a light/dark mode toggle, an interactive coursework timeline, expandable skill meters, and project carousels — built from scratch to reflect both my technical background and a bit of personality.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Light/dark mode toggle (persisted across visits)
+- Custom coffee-themed design system
+- Interactive "coffee intensity" skill meters with hover/click project details
+- Vertical coursework timeline showing completed, in-progress, and upcoming quarters
+- Image/video carousels for research posters and project demos
+- Fully responsive, mobile-friendly layout
+- Collapsible sidebar table of contents for quick navigation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **React** + **Vite** — core framework and build tool
+- **Framer Motion** — scroll animations and expand/collapse transitions
+- **Swiper** — image/video carousels
+- **React Icons** — icon set (GitHub, LinkedIn, coffee beans, etc.)
+- Plain CSS with custom properties (no CSS framework) for the coffee color system and dark mode
+
+## Sections
+
+- About
+- Skills
+- Technical Teams
+- Projects
+- Experience
+- Research
+- Publications
+- Professional Development
+- Coursework
+
+## Running Locally
+
+```bash
+git clone https://github.com/yanilettemontano/personal-website.git
+cd personal-website
+npm install
+npm run dev
+```
+
+Then open `http://localhost:5173` in your browser.
+
+## Deployment
+
+Deployed via [Vercel/Netlify — pick whichever you used] with automatic redeploys on every push to `main`.
+
+## Contact
+
+- GitHub: [@yanilettemontano](https://github.com/yanilettemontano)
+- LinkedIn: [Yanilette Montano](https://www.linkedin.com/in/yanilette-montano-bb9644292/)
+- Email: yamontan@uci.edu
