@@ -741,15 +741,6 @@ function App() {
 </section>
 
 <footer className="site-footer">
-  <div className="footer-coffee">
-    <div className="steam-wrapper">
-      <span className="steam steam-1"></span>
-      <span className="steam steam-2"></span>
-      <span className="steam steam-3"></span>
-    </div>
-    <span className="coffee-cup-icon">☕</span>
-  </div>
-  <p className="footer-text">Thanks for stopping by — brewed with care.</p>
   <p className="footer-meta">© {new Date().getFullYear()} Yanilette Montano</p>
   <button className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
   ↑ Back to top

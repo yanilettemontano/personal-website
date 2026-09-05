@@ -789,17 +789,6 @@ body{
   color: var(--color-bg);
 }
 
-.footer-coffee {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-.coffee-cup-icon {
-  font-size: 2rem;
-  display: block;
-}
-
 .footer-text {
   font-family: var(--font-heading);
   font-size: 1rem;
@@ -820,32 +809,4 @@ body{
   font-size: 0.8rem;
   cursor: pointer;
   margin-top: 1rem;
-}
-.steam-wrapper {
-  position: relative;
-  height: 40px;
-  width: 60px;
-  margin: 0 auto;
-}
-
-.steam {
-  position: absolute;
-  bottom: 0;
-  width: 6px;
-  height: 20px;
-  background: var(--color-accent-mid);
-  border-radius: 50%;
-  opacity: 0;
-  filter: blur(3px);
-  animation: rise 3s ease-in infinite;
-}
-
-.steam-1 { left: 10px; animation-delay: 0s; }
-.steam-2 { left: 27px; animation-delay: 1s; }
-.steam-3 { left: 44px; animation-delay: 2s; }
-
-@keyframes rise {
-  0% { transform: translateY(0) scaleX(1); opacity: 0; }
-  20% { opacity: 0.5; }
-  100% { transform: translateY(-35px) scaleX(1.8); opacity: 0; }
 }
