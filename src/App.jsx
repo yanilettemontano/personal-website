@@ -198,6 +198,36 @@ const professionalDevelopment = [
       level: 80,
       usedIn: ['QuantumSavory.jl, Quantum Information Research'],
     },
+    {
+      name: 'Verilog',
+      level: 70,
+      usedIn: ['Digital Logic Design, Flapping Wing MAV Flight Controller'],
+    },
+    {
+      name: 'Machine Learning',
+      level: 50,
+      usedIn: ['Phase Change Memory Cell Health Prediction, Computer Vision for Underwater Robotics'],
+    },
+    {
+      name: 'Git',
+      level: 90,
+      usedIn: ['Version Control for All Projects'],
+    },
+    {
+      name: 'Linux',
+      level: 85,
+      usedIn: ['Anteater Chess, Client-Server Poker Game, QuantumSavory.jl'],
+    },
+    {
+      name: 'Altium Designer',
+      level: 60,
+      usedIn: ['Flapping Wing MAV Flight Controller Design'],
+    },
+    {
+      name: "Xilinx Vivado",
+      level: 70,
+      usedIn: ['Digital Logic Design, FPGA Development'],
+    },
   ]
   const timeline = [
   { term: 'Fall 2025', completed: true, courses: ['EECS 31 — Intro to Digital Systems', 'EECS 50 — Discrete-Time Signals and Systems', 'EECS 70B/LB — Network Analysis II & Lab'] },
@@ -433,6 +463,23 @@ function App() {
               <source src="/videos/poker-demo.mp4" type="video/mp4"/>
               Your browser doesn't support embedded vidoes.
             </video>
+          </figure>
+          </div>
+        
+        <br/>
+          <div>
+            <h3>RISC-V Processor</h3>
+            <p><em>Verilog, Xilinx Vivado</em></p>
+            <p>
+            I designed and implemented a 32-bit RISC-V processor using Verilog such as developing both the datapath and control logic required for instruction execution. 
+            The project included building key components such as the Filp Flop, Multiplexer, ALU, register file, control unit, and instruction decoder to support R-type 
+            and I-type instruction types. Functionality was validated through simulation and testbenches in Xilinx Vivado, with debugging performed using waveform analysis 
+            and iterative testing to ensure correct instruction flow and system behavior. This work strengthened my understanding of computer architecture, RTL design, and 
+            hardware-level debugging.
+            </p>
+            <figure className="project-figure">
+            <img src="/src/assets/images/processor.png" alt="Processor Testbench Waveform Simulation"
+            className="project-image"/>
           </figure>
           </div>
         
@@ -692,6 +739,22 @@ function App() {
     <CourseworkTimeline />
   </div>
 </section>
+
+<footer className="site-footer">
+  <div className="footer-coffee">
+    <div className="steam-wrapper">
+      <span className="steam steam-1"></span>
+      <span className="steam steam-2"></span>
+      <span className="steam steam-3"></span>
+    </div>
+    <span className="coffee-cup-icon">☕</span>
+  </div>
+  <p className="footer-text">Thanks for stopping by — brewed with care.</p>
+  <p className="footer-meta">© {new Date().getFullYear()} Yanilette Montano</p>
+  <button className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  ↑ Back to top
+</button>
+</footer>
 
       </div>
   );
