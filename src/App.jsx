@@ -160,25 +160,25 @@ const professionalDevelopment = [
     title: 'Global Qiskit Summer School',
     organization: 'IBM Quantum',
     description: 'A two-week intensive program covering quantum computing fundamentals, Qiskit programming, and hands-on labs with IBM quantum hardware.',
-    images: ['/src/assets/images/qiskit-summer-school.png'],
+    images: ['/images/qiskit-summer-school.png'],
     },
     {
       title: 'QNumerics Summer School',
       organization: 'QNumerics',
       description: 'Focused training on numerical methods and simulation techniques for quantum systems.',
-      images: ['/src/assets/images/qnumerics-summer-school.png'],
+      images: ['/images/qnumerics-summer-school.png'],
     },
     {
       title: 'CQN Student & Postdoc Retreat',
       organization: 'Center for Quantum Networks',
       description: 'A retreat for students and postdocs to present research, attend workshops, and network with peers in the field of quantum networking.',
-      images: ['/src/assets/images/cqn-retreat.jpg'],
+      images: ['/images/cqn-retreat.jpg'],
     },
     {
       title: 'CNSI and UCLA Samueli’s Semiconductor Program',
       organization: 'CNSI and UCLA Samueli',
       description: 'A program focused on semiconductor research, including workshops and lab sessions on fabrication and characterization techniques.',
-      images: ['/src/assets/images/csni-group.png', '/src/assets/images/projector.png'],
+      images: ['/images/csni-group.png', '/images/projector.png'],
     },
   ]
 
@@ -309,7 +309,7 @@ function App() {
       <section id="about" className="section section-about">
         <div className ="section-inner about-layout">
           <div className ="about-photo">
-            <img src="/src/assets/images/headshot.jpg" alt="Headshot of Yanilette Montano" />
+            <img src="/images/headshot.jpg" alt="Headshot of Yanilette Montano" />
             <div className="about-contact-buttons">
               <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="icon-btn" aria-label="Github">
                 <FaGithub />
@@ -389,10 +389,10 @@ function App() {
             slidesPerView={1} 
             className="project-carousel">
             <SwiperSlide>
-              <img src="/src/assets/images/Fall_2025_Meeting.jpg" alt="Fall 2025 End of Quarter Meeting Group Photo" />
+              <img src="/images/Fall_2025_Meeting.jpg" alt="Fall 2025 End of Quarter Meeting Group Photo" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/src/assets/images/Annual-Design-Review.jpg" alt="Annual Design Review" />
+              <img src="/images/Annual-Design-Review.JPG" alt="Annual Design Review" />
             </SwiperSlide>
             
             </Swiper>
@@ -443,7 +443,7 @@ function App() {
             for a team AI that won every tournament game. Out of 32 teams, our team placed 4th in the final tournament.
           </p>
           <figure className="project-figure">
-            <img src="/src/assets/images/AnteaterChess.png" alt="Anteater Chess Gameplay"
+            <img src="/images/AnteaterChess.png" alt="Anteater Chess Gameplay"
             className="project-image"/>
           </figure>
           </div>
@@ -478,7 +478,7 @@ function App() {
             hardware-level debugging.
             </p>
             <figure className="project-figure">
-            <img src="/src/assets/images/processor.png" alt="Processor Testbench Waveform Simulation"
+            <img src="/images/processor.png" alt="Processor Testbench Waveform Simulation"
             className="project-image"/>
           </figure>
           </div>
@@ -539,7 +539,7 @@ function App() {
                 wellness events, academic workshops, guest speakers, and recruitment activities.
               </p>
             </div>
-            <img src="/src/assets/images/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
+            <img src="/images/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
           </div>
         
 
@@ -552,7 +552,7 @@ function App() {
                 process engineers to develop standardized photolithography processes.
               </p>
             </div>
-            <img src="/src/assets/images/HRL.png" alt="HRL cleanroom group picture" className="experience-image"/>
+            <img src="/images/HRL.png" alt="HRL cleanroom group picture" className="experience-image"/>
           </div>
 
           <div className="experience-entry">
@@ -565,7 +565,7 @@ function App() {
               computer architecture. I’ve also participated in tutoring trainings, workshops, and conferences to continually strengthen my approach as an educator and mentor.
             </p>
           </div>
-          <img src="src/assets/images/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
+          <img src="/images/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
         </div>
 
         </div>
@@ -606,10 +606,10 @@ function App() {
             slidesPerView={1} 
             className="project-carousel">
             <SwiperSlide>
-              <img src="/src/assets/images/Montano_UMass.png" alt="NSF research poster" />
+              <img src="/images/Montano_UMass.png" alt="NSF research poster" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="/src/assets/images/CQN-Poster-Session.png" alt="CQN Poster Session" />
+              <img src="/images/CQN-Poster-Session.png" alt="CQN Poster Session" />
             </SwiperSlide>
             
             </Swiper>
@@ -632,10 +632,10 @@ function App() {
             className="project-carousel"
             >
               <SwiperSlide>
-                <img src="/src/assets/images/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
+                <img src="/images/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/src/assets/images/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
+                <img src="/images/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
               </SwiperSlide>
             </Swiper>
           </div>
