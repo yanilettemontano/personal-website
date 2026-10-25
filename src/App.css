@@ -25,6 +25,8 @@
 }
 
 .brand {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -61,12 +63,16 @@
   height: 140px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 h1 {
-  font-size: 2.25rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .subtitle {
@@ -78,6 +84,10 @@ h1 {
 
 .lede {
   max-width: 62ch;
+}
+
+.lede + .lede {
+  margin-top: 0.75rem;
 }
 
 .links {
@@ -106,7 +116,7 @@ h1 {
 .btn-primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
+  color: var(--accent-ink);
 }
 
 .btn-primary:hover {
@@ -124,12 +134,20 @@ h1 {
 }
 
 h2 {
-  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
 }
 
 h3 {
@@ -163,6 +181,7 @@ h3 {
 
 /* Project cards */
 .card {
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.5rem;
@@ -207,11 +226,13 @@ h3 {
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--text);
 }
 
 .subhead {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
   margin: 2rem 0 0.75rem;
 }
 

@@ -163,10 +163,10 @@ const coursework = [
   },
 ]
 
-function Section({ id, title, children }) {
+function Section({ id, num, title, children }) {
   return (
     <section id={id} className="section">
-      <h2>{title}</h2>
+      <h2><span className="section-num">{num}</span>{title}</h2>
       {children}
     </section>
   )
@@ -201,7 +201,11 @@ function App() {
             <p className="lede">
               Computer engineering student focused on embedded systems and hardware. I've designed flight
               controller hardware and firmware for a micro air vehicle, built a RISC-V processor in Verilog,
-              and worked in the cleanroom at HRL Laboratories. Seeking firmware, embedded, and hardware
+              and worked in the cleanroom at HRL Laboratories.
+            </p>
+            <p className="lede">
+              More recently I got into quantum networking through research at the Center for Quantum Networks,
+              and I'm still growing into the field. I'm looking for firmware, embedded, and hardware
               engineering internships.
             </p>
             <div className="links">
@@ -212,7 +216,7 @@ function App() {
           </div>
         </section>
 
-        <Section id="projects" title="Projects">
+        <Section id="projects" num="01" title="Projects">
           {projects.map((p) => (
             <article key={p.title} className="card project">
               <div className="project-body">
@@ -247,7 +251,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section id="experience" title="Experience">
+        <Section id="experience" num="02" title="Experience">
           {experience.map((e) => (
             <div key={e.role} className="entry">
               <div className="entry-head">
@@ -262,7 +266,7 @@ function App() {
           ))}
         </Section>
 
-        <Section id="skills" title="Skills">
+        <Section id="skills" num="03" title="Skills">
           <dl className="skills">
             {skillGroups.map((g) => (
               <div key={g.label} className="skill-row">
@@ -273,7 +277,7 @@ function App() {
           </dl>
         </Section>
 
-        <Section id="research" title="Research & Publications">
+        <Section id="research" num="04" title="Research & Publications">
           {research.map((r) => (
             <div key={r.title} className="entry">
               <div className="entry-head">
@@ -294,7 +298,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="coursework" title="Relevant Coursework">
+        <Section id="coursework" num="05" title="Relevant Coursework">
           <div className="coursework">
             {coursework.map((c) => (
               <div key={c.label}>
@@ -311,7 +315,7 @@ function App() {
           </p>
         </Section>
 
-        <Section id="contact" title="Contact">
+        <Section id="contact" num="06" title="Contact">
           <p>
             I'm looking for firmware, embedded systems, and hardware engineering internships.
             The best way to reach me is <a href={`mailto:${EMAIL}`} className="text-link">{EMAIL}</a>.
@@ -319,7 +323,7 @@ function App() {
         </Section>
       </main>
 
-      <footer className="footer">© {new Date().getFullYear()} Yanilette Montano</footer>
+      <footer className="footer">© {new Date().getFullYear()} Yanilette Montano · Built with React and a lot of coffee ☕</footer>
     </>
   )
 }

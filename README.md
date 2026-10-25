@@ -12,7 +12,7 @@ A clean, single-page portfolio aimed at firmware, embedded systems, and hardware
 
 - **React** + **Vite**
 - **React Icons** for the GitHub, LinkedIn, and email icons
-- Plain CSS with custom properties; dark mode follows the visitor's system setting
+- Plain CSS with custom properties (warm cream and terracotta palette, Fraunces + DM Sans type); dark mode follows the visitor's system setting
 
 ## Sections
 
