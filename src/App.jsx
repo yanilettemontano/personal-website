@@ -1,5 +1,6 @@
 import './App.css'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { motion, MotionConfig, useScroll, useSpring } from 'framer-motion'
 
 const EMAIL = 'yamontan@uci.edu'
 const GITHUB = 'https://github.com/yanilettemontano'
@@ -163,13 +164,38 @@ const coursework = [
   },
 ]
 
+const reveal = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+}
+
+function Reveal({ as = 'div', children, ...props }) {
+  const Tag = motion[as]
+  return (
+    <Tag variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} {...props}>
+      {children}
+    </Tag>
+  )
+}
+
 function Section({ id, num, title, children }) {
   return (
     <section id={id} className="section">
-      <h2><span className="section-num">{num}</span>{title}</h2>
+      <Reveal as="h2"><span className="section-num">{num}</span>{title}</Reveal>
       {children}
     </section>
   )
+}
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
+  return <motion.div className="scroll-progress" style={{ scaleX }} />
 }
 
 function Tags({ items }) {
@@ -182,7 +208,8 @@ function Tags({ items }) {
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
+      <ScrollProgress />
       <header className="topbar">
         <div className="topbar-inner">
           <a href="#top" className="brand">Yanilette Montano</a>
@@ -193,32 +220,39 @@ function App() {
       </header>
 
       <main id="top" className="container">
-        <section className="hero">
-          <img src="/images/headshot.jpg" alt="Yanilette Montano" className="headshot" />
-          <div>
-            <h1>Yanilette Montano</h1>
-            <p className="subtitle">Computer Engineering · UC Irvine · Expected March 2028</p>
-            <p className="lede">
+        <motion.section className="hero" variants={stagger} initial="hidden" animate="visible">
+          <motion.img
+            src="/images/headshot.jpg"
+            alt="Yanilette Montano"
+            className="headshot"
+            initial={{ opacity: 0, scale: 0.85, rotate: -6 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <motion.div variants={stagger}>
+            <motion.h1 variants={reveal}>Yanilette Montano</motion.h1>
+            <motion.p variants={reveal} className="subtitle">Computer Engineering · UC Irvine · Expected March 2028</motion.p>
+            <motion.p variants={reveal} className="lede">
               Computer engineering student focused on embedded systems and hardware. I've designed flight
               controller hardware and firmware for a micro air vehicle, built a RISC-V processor in Verilog,
               and worked in the cleanroom at HRL Laboratories.
-            </p>
-            <p className="lede">
+            </motion.p>
+            <motion.p variants={reveal} className="lede">
               More recently I got into quantum networking through research at the Center for Quantum Networks,
               and I'm still growing into the field. I'm looking for firmware, embedded, and hardware
               engineering internships.
-            </p>
-            <div className="links">
+            </motion.p>
+            <motion.div variants={reveal} className="links">
               <a href={`mailto:${EMAIL}`} className="btn btn-primary"><FaEnvelope /> {EMAIL}</a>
               <a href={GITHUB} target="_blank" rel="noreferrer" className="btn"><FaGithub /> GitHub</a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer" className="btn"><FaLinkedin /> LinkedIn</a>
-            </div>
-          </div>
-        </section>
+            </motion.div>
+          </motion.div>
+        </motion.section>
 
         <Section id="projects" num="01" title="Projects">
           {projects.map((p) => (
-            <article key={p.title} className="card project">
+            <Reveal as="article" key={p.title} className="card project">
               <div className="project-body">
                 <h3>{p.title}</h3>
                 <p className="meta">{p.context}</p>
@@ -237,7 +271,7 @@ function App() {
                   <source src={p.video} type="video/mp4" />
                 </video>
               )}
-            </article>
+            </Reveal>
           ))}
 
           <h3 className="subhead">Other projects</h3>
@@ -253,7 +287,7 @@ function App() {
 
         <Section id="experience" num="02" title="Experience">
           {experience.map((e) => (
-            <div key={e.role} className="entry">
+            <Reveal key={e.role} className="entry">
               <div className="entry-head">
                 <h3>{e.role}</h3>
                 <span className="dates">{e.dates}</span>
@@ -262,31 +296,31 @@ function App() {
               <ul className="points">
                 {e.points.map((pt) => <li key={pt}>{pt}</li>)}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </Section>
 
         <Section id="skills" num="03" title="Skills">
           <dl className="skills">
             {skillGroups.map((g) => (
-              <div key={g.label} className="skill-row">
+              <Reveal key={g.label} className="skill-row">
                 <dt>{g.label}</dt>
                 <dd><Tags items={g.items} /></dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </Section>
 
         <Section id="research" num="04" title="Research & Publications">
           {research.map((r) => (
-            <div key={r.title} className="entry">
+            <Reveal key={r.title} className="entry">
               <div className="entry-head">
                 <h3>{r.title}</h3>
                 <span className="dates">{r.dates}</span>
               </div>
               <p className="meta">{r.org}</p>
               <p>{r.text}</p>
-            </div>
+            </Reveal>
           ))}
           <div className="entry publication">
             <h3>Publication</h3>
@@ -299,16 +333,16 @@ function App() {
         </Section>
 
         <Section id="coursework" num="05" title="Relevant Coursework">
-          <div className="coursework">
+          <motion.div className="coursework" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
             {coursework.map((c) => (
-              <div key={c.label}>
+              <motion.div key={c.label} variants={reveal}>
                 <h3 className="course-label">{c.label}</h3>
                 <ul>
                   {c.items.map((i) => <li key={i}>{i}</li>)}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <p className="meta programs">
             Programs: CNSI & UCLA Samueli Semiconductor Program · IBM Global Qiskit Summer School ·
             QNumerics Summer School · CQN Student & Postdoc Retreat
@@ -324,7 +358,7 @@ function App() {
       </main>
 
       <footer className="footer">© {new Date().getFullYear()} Yanilette Montano · Built with React and a lot of coffee ☕</footer>
-    </>
+    </MotionConfig>
   )
 }
 

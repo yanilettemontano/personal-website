@@ -11,6 +11,7 @@ A clean, single-page portfolio aimed at firmware, embedded systems, and hardware
 ## Tech Stack
 
 - **React** + **Vite**
+- **Framer Motion** for scroll reveals and the intro animation
 - **React Icons** for the GitHub, LinkedIn, and email icons
 - Plain CSS with custom properties (warm cream and terracotta palette, Fraunces + DM Sans type); dark mode follows the visitor's system setting
 

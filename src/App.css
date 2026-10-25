@@ -365,3 +365,86 @@ h3 {
     gap: 0;
   }
 }
+
+/* Motion */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  z-index: 20;
+}
+
+.topbar nav a {
+  position: relative;
+  transition: color 0.2s;
+}
+
+.topbar nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.topbar nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.project-media {
+  transition: transform 0.4s ease;
+}
+
+.card:hover img.project-media {
+  transform: scale(1.03);
+}
+
+.btn {
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.tags li {
+  transition: background 0.2s, color 0.2s;
+}
+
+.tags li:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card,
+  .card:hover,
+  .btn:hover,
+  .card:hover img.project-media {
+    transform: none;
+    transition: none;
+  }
+}
