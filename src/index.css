@@ -1,56 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito+Sans:wght@400;600&family=Sacramento&display=swap');
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --border: #e3e6ea;
+  --text: #16191d;
+  --muted: #5b6470;
+  --accent: #1f5fbf;
+  --accent-soft: #e8f0fb;
 
-:root{
-  --color-bg: #f5efe6;
-  --color-panel: #e8ddce;
-  --color-accent-dark: #4a3428;
-  --color-accent-mid: #8b5e3c;
-  --color-button: #c9a67d;
-  --color-button-border: #4a3428;
-  --color-text-dark: #3b2a20;
-  --color-text-light: #f5efe6;
-
-  --font-heading: 'Comfortaa', sans-serif;
-  --font-body: 'Nunito Sans', sans-serif;
-  --font-script: 'Cherry Bomb One', cursive;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-[data-theme ='dark']{
-  --color-bg: #1e1512;
-  --color-panel: #2b1f1a;
-  --color-accent-dark: #d9c3a8;
-  --color-accent-mid: #c9a67d;
-  --color-button: #4a3428;
-  --color-button-border: #d9c3a8;
-  --color-text-dark: #f0e6d8;
-  --color-text-light: #1e1512;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1216;
+    --surface: #171b21;
+    --border: #2a3038;
+    --text: #e7eaee;
+    --muted: #9aa3ae;
+    --accent: #6ea8ff;
+    --accent-soft: #1a2a42;
+  }
 }
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body{
-  background-color: var(--color-bg);
-  font-family: var(--font-body);
-  color: var(--color-text-dark);
-}
-
-footer{
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.8rem;
-}
-
-html{
+html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
 }
 
-#root {
-  max-width: none;
-  margin: 0;
-  padding: 0;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
 }

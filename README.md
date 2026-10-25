@@ -6,37 +6,22 @@ My personal portfolio site which is built to showcase my research, projects, tec
 
 ## About
 
-A coffee-themed portfolio (yes, really) featuring a light/dark mode toggle, an interactive coursework timeline, expandable skill meters, and project carousels — built from scratch to reflect both my technical background and a bit of personality.
-
-## Features
-
-- Light/dark mode toggle (persisted across visits)
-- Custom coffee-themed design system
-- Interactive "coffee intensity" skill meters with hover/click project details
-- Vertical coursework timeline showing completed, in-progress, and upcoming quarters
-- Image/video carousels for research posters and project demos
-- Fully responsive, mobile-friendly layout
-- Collapsible sidebar table of contents for quick navigation
+A clean, single-page portfolio aimed at firmware, embedded systems, and hardware engineering roles. Projects and hands-on hardware work come first, followed by experience, skills, research, and relevant coursework.
 
 ## Tech Stack
 
-- **React** + **Vite** — core framework and build tool
-- **Framer Motion** — scroll animations and expand/collapse transitions
-- **Swiper** — image/video carousels
-- **React Icons** — icon set (GitHub, LinkedIn, coffee beans, etc.)
-- Plain CSS with custom properties (no CSS framework) for the coffee color system and dark mode
+- **React** + **Vite**
+- **React Icons** for the GitHub, LinkedIn, and email icons
+- Plain CSS with custom properties; dark mode follows the visitor's system setting
 
 ## Sections
 
-- About
-- Skills
-- Technical Teams
 - Projects
 - Experience
-- Research
-- Publications
-- Professional Development
-- Coursework
+- Skills
+- Research & Publications
+- Relevant Coursework
+- Contact
 
 ## Running Locally
 
