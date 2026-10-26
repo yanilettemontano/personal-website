@@ -474,7 +474,6 @@ function App() {
               <source src="/videos/drone-demo.mp4" type="video/mp4"/>
               Your browser doesn't support embedded vidoes.
             </video>
-            <caption>This was our first flight of the drone completed week 4 into the course!</caption>
           </figure>
           </div>
 
