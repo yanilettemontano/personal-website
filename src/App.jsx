@@ -458,6 +458,27 @@ function App() {
           <h2>Projects</h2>
 
           <div>
+          <h4>Autonomous Unmanned Aerial Vehicle: AI with Vision Based Navigation</h4>
+          <p><em>Firmware, Edgetx, Mission Planner, Radiomaster, Ardupilot, AI</em></p>
+          <p>
+            This is a course-based project that covers drone avionics, batteries, power, mottors, airframes. The drone uses Ardupilot, that is 
+            full capable of autonomous, GPS guided way point missions with wireless telemetry to a ground control station and fully-flight capabilites.
+            I passed a short online FAA exam and followed all FAA and UC drone policies during the course.
+          </p>
+          <figure className="project-figure">
+            <video className="video-wrapper"
+            controls
+            muted
+            playsInline
+            >
+              <source src="/videos/drone-demo.mp4" type="video/mp4"/>
+              Your browser doesn't support embedded vidoes.
+            </video>
+            <caption>This was our first flight of the drone completed week 4 into the course!</caption>
+          </figure>
+          </div>
+
+          <div>
           <h3>Anteater Chess - Custom Board Evaluator</h3>
           <p><em>C, Linux, Git</em></p>
           <p>
