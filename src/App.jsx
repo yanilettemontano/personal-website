@@ -334,7 +334,7 @@ function App() {
       <section id="about" className="section section-about">
         <div className ="section-inner about-layout">
           <div className ="about-photo">
-            <img src="/images/headshot.jpg" alt="Headshot of Yanilette Montano" />
+            <img src="/images/update-profile-pic.png" alt="Headshot of Yanilette Montano" />
             <div className="about-contact-buttons">
               <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="icon-btn" aria-label="Github">
                 <FaGithub />
