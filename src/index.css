@@ -1,56 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito+Sans:wght@400;600&family=Sacramento&display=swap');
-
-:root{
-  --color-bg: #f5efe6;
-  --color-panel: #e8ddce;
-  --color-accent-dark: #4a3428;
-  --color-accent-mid: #8b5e3c;
-  --color-button: #c9a67d;
-  --color-button-border: #4a3428;
-  --color-text-dark: #3b2a20;
-  --color-text-light: #f5efe6;
-
-  --font-heading: 'Comfortaa', sans-serif;
-  --font-body: 'Nunito Sans', sans-serif;
-  --font-script: 'Cherry Bomb One', cursive;
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
-
-[data-theme ='dark']{
-  --color-bg: #1e1512;
-  --color-panel: #2b1f1a;
-  --color-accent-dark: #d9c3a8;
-  --color-accent-mid: #c9a67d;
-  --color-button: #4a3428;
-  --color-button-border: #d9c3a8;
-  --color-text-dark: #f0e6d8;
-  --color-text-light: #1e1512;
-}
-
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body{
-  background-color: var(--color-bg);
-  font-family: var(--font-body);
-  color: var(--color-text-dark);
-}
-
-footer{
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.8rem;
-}
-
-html{
-  scroll-behavior: smooth;
-}
-
-#root {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul, ol { list-style: none; }
+#root { min-height: 100vh; }

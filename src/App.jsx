@@ -1,292 +1,153 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaCheck } from 'react-icons/fa'
-import { useState, useEffect} from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
-import { FaSun, FaMoon } from 'react-icons/fa'
-import { motion, AnimatePresence } from 'framer-motion'
-import { GiCoffeeBeans } from 'react-icons/gi'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import { contact, skills, teams, projects, experience, research, development, timeline } from './data'
 
-function useTypewriter(text, speed = 60){
-  const [displayed, setDisplayed] = useState('')
-
-  useEffect(() => {
-    let cancelled = false
-    let i = 0
-    let timeoutId
-    
-    const tick = () => {
-      if (cancelled) return
-      if (i < text.length) {
-        setDisplayed(text.slice(0, i + 1))
-        i++
-        timeoutId = setTimeout(tick, speed)
-      }
-    }
-
-    setDisplayed('')
-    timeoutId = setTimeout(tick, speed)
-
-
-    return () => {
-      cancelled = true
-      clearTimeout(timeoutId)
-    }
-  }, [text, speed])
-  return displayed
-}
-
-function SkillMeter({ skill }){
-  const [open, setOpen] = useState(false)
-  const [hovered, setHovered] = useState(false)
-
-  return (
-    <div 
-      className="skill-item"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <button className="skill-header" onClick={() => setOpen(!open)}>
-        <span className="skill-name">{skill.name}</span>
-      </button>
-
-      <div className="coffee-bar-wrapper">
-        <span className="bar-label">Decaf</span>
-        <div className="coffee-bar-track">
-          <div className="coffee-bar-fill" style={{ width: `${skill.level}%`}}>
-            <GiCoffeeBeans className="bar-bean" />
-          </div>
-        </div>
-        <span className="bar-label">Triple Espresso</span>
-      </div>
-
-      <AnimatePresence>
-        {hovered && !open && (
-          <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.2 }}
-          className="skill-tooltip"
-          >
-            <ul>
-              {skill.usedIn.map((project) =>(
-                <li key={project}>{project}</li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-          initial={{height: 0, opacity: 0}}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="skill-detail"
-          >
-            <ul>
-              {skill.usedIn.map((project) => (
-                <li key={project}>{project}</li>
-              ))}
-            </ul>
-          </motion.div>
-        )
-        }
-      </AnimatePresence>
-    </div>
-  )
-}
-
-function CourseworkTimeline() {
-  const [activeIndex, setActiveIndex] = useState(null)
-
-  return (
-    <div className="timeline-vertical">
-      {timeline.map((point, index) => (
-        <div
-          key={point.term}
-          className={`timeline-row ${index % 2 === 0 ? 'left' : 'right'}`}
-        >
-          <div className="timeline-card-wrapper">
-            <div
-              className="timeline-card"
-              onMouseEnter={() => setActiveIndex(index)}
-              onMouseLeave={() => setActiveIndex(null)}
-              onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-            >
-              <span className="timeline-term">{point.term}</span>
-
-              <AnimatePresence>
-                {activeIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="timeline-courses"
-                  >
-                    <ul>
-                      {point.courses.map((course) => (
-                        <li key={course}>{course}</li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          <span className={`timeline-circle ${point.completed ? 'filled' : ''} ${point.current ? 'current' : ''}`} />
-
-          <div className="timeline-spacer" />
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function EmailButton({ email }){
-  const [copied, setCopied] = useState(false)
-
-  const handleClick = async (e) => {
-    e.preventDefault()
-    try{
-      await navigator.clipboard.writeText(email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch{
-      //Clipboard failed - fall back to mailto as last resort
-      window.location.href = `mailto:${email}`
-    }
-  }
-
-  return (
-    <div className="email-btn-wrapper">
-      <button className="icon-btn" onClick={handleClick} aria-label="Copy email address">
-        {copied ? <FaCheck /> : <FaEnvelope />}
-      </button>
-      {copied && <span className="copy-toast">Copied!</span>}
-    </div>
-  )
-}
-
-const fadeUp ={
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0},
-}
-
-const professionalDevelopment = [
-    {
-    title: 'Global Qiskit Summer School',
-    organization: 'IBM Quantum',
-    description: 'A two-week intensive program covering quantum computing fundamentals, Qiskit programming, and hands-on labs with IBM quantum hardware.',
-    images: ['/images/qiskit-summer-school.png'],
-    },
-    {
-      title: 'QNumerics Summer School',
-      organization: 'QNumerics',
-      description: 'Focused training on numerical methods and simulation techniques for quantum systems.',
-      images: ['/images/qnumerics-summer-school.png'],
-    },
-    {
-      title: 'CQN Student & Postdoc Retreat',
-      organization: 'Center for Quantum Networks',
-      description: 'A retreat for students and postdocs to present research, attend workshops, and network with peers in the field of quantum networking.',
-      images: ['/images/cqn-retreat.jpg'],
-    },
-    {
-      title: 'CNSI and UCLA Samueli’s Semiconductor Program',
-      organization: 'CNSI and UCLA Samueli',
-      description: 'A program focused on semiconductor research, including workshops and lab sessions on fabrication and characterization techniques.',
-      images: ['/images/csni-group.png', '/images/projector.png'],
-    },
-  ]
-
-  const skills =[
-    {
-      name: 'C/C++',
-      level: 95, //percentage fill, 0-100
-      usedIn: ['Anteater Chess, Client-Server Poker Game, Flapping Wing MAV Firmware'],
-    },
-    {
-      name: 'Python',
-      level: 60,
-      usedIn: ['Machine Learning for Phase Change Memory, Computer Vision for Underwater Robotics'],
-    },
-    {
-      name: 'Julia',
-      level: 80,
-      usedIn: ['QuantumSavory.jl, Quantum Information Research'],
-    },
-    {
-      name: 'Verilog',
-      level: 70,
-      usedIn: ['Digital Logic Design, Flapping Wing MAV Flight Controller'],
-    },
-    {
-      name: 'Machine Learning',
-      level: 50,
-      usedIn: ['Phase Change Memory Cell Health Prediction, Computer Vision for Underwater Robotics'],
-    },
-    {
-      name: 'Git',
-      level: 90,
-      usedIn: ['Version Control for All Projects'],
-    },
-    {
-      name: 'Linux',
-      level: 85,
-      usedIn: ['Anteater Chess, Client-Server Poker Game, QuantumSavory.jl'],
-    },
-    {
-      name: 'Altium Designer',
-      level: 60,
-      usedIn: ['Flapping Wing MAV Flight Controller Design'],
-    },
-    {
-      name: "Xilinx Vivado",
-      level: 70,
-      usedIn: ['Digital Logic Design, FPGA Development'],
-    },
-  ]
-  const timeline = [
-  { term: 'Fall 2025', completed: true, courses: ['EECS 31 — Intro to Digital Systems', 'EECS 50 — Discrete-Time Signals and Systems', 'EECS 70B/LB — Network Analysis II & Lab'] },
-  { term: 'Winter 2026', completed: true, courses: ['EECS 31L — Intro to Digital Logic Lab', 'EECS 114 — Engineering Data Structures and Algorithms', 'EECS 170A/LA — Electronics I & Lab'] },
-  { term: 'Spring 2026', completed: true, courses: ['EECS 55 — Engineering Probability', 'EECS 22L — Software Engineering Project in C', 'EECS 170B/LB — Electronics II & Lab'] },
-  { term: 'Fall 2026', completed: false, current: true, courses: ['EECS 112 — Organization of Digital Computers', 'EECS 145 — Electrical Engineering Analysis', 'EECS 148 — Computer Networks', 'EECS 195 — Drones'] },
-  { term: 'Winter 2027', completed: false, courses: ['EECS 112L — Organization of Digital Computers Lab', 'ENGR 190W — Communications in the Professional World', 'EECS 150 — Continuous-Time Signals and Systems'] },
-  { term: 'Spring 2027', completed: false, courses: ['EECS 111 — System Software', 'EECS 113 — Processor Hardware/Software Interfaces', 'EECS 198 — Presenior Design', 'EECS 125 — Intro to Machine Learning for Engineers'] },
-  { term: 'Fall 2027', completed: false, courses: ['EECS 159A — Senior Design Project I', 'EECS 118 — Data and Knowledge Science and Engineering', 'EECS 119 — VLSI', 'Engr 93 — Public and Professional Service in Engineering'] },
-  { term: 'Winter 2028', completed: false, courses: ['EECS 159B — Senior Design Project II', 'EECS 141A — Communication Systems I', 'EECS 152B — Digital Signal Processing Design and Lab'] },
+const nav = [
+  ['about', 'About'],
+  ['skills', 'Skills'],
+  ['teams', 'Teams'],
+  ['projects', 'Projects'],
+  ['experience', 'Experience'],
+  ['research', 'Research'],
+  ['coursework', 'Coursework'],
 ]
 
+const Icon = ({ d, fill = false }) => (
+  <svg className="icon" viewBox="0 0 24 24" fill={fill ? 'currentColor' : 'none'} stroke={fill ? 'none' : 'currentColor'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {d}
+  </svg>
+)
+const icons = {
+  github: <Icon fill d={<path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z" />} />,
+  linkedin: <Icon fill d={<path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4V9Z" />} />,
+  mail: <Icon d={<><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></>} />,
+  check: <Icon d={<path d="M20 6 9 17l-5-5" />} />,
+  arrow: <Icon d={<path d="M7 17 17 7M7 7h10v10" />} />,
+  up: <Icon d={<path d="m5 12 7-7 7 7M12 19V5" />} />,
+  left: <Icon d={<path d="m15 18-6-6 6-6" />} />,
+  right: <Icon d={<path d="m9 18 6-6-6-6" />} />,
+  down: <Icon d={<path d="m6 9 6 6 6-6" />} />,
+  pin: <Icon d={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></>} />,
+  file: <Icon d={<><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /></>} />,
+  moon: <Icon d={<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />} />,
+  sun: <Icon d={<><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>} />,
+}
+
+function Section({ id, index, title, children }) {
+  return (
+    <section id={id} className="section">
+      <div className="section-head">
+        <span className="eyebrow">{index}</span>
+        <h2>{title}</h2>
+      </div>
+      {children}
+    </section>
+  )
+}
+
+function EmailButton() {
+  const [copied, setCopied] = useState(false)
+  return (
+    <button
+      className="btn-ghost"
+      aria-label="Copy email address"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(contact.email)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
+        } catch {
+          window.location.href = `mailto:${contact.email}`
+        }
+      }}
+    >
+      {copied ? icons.check : icons.mail}
+      {copied ? 'Copied!' : contact.email}
+    </button>
+  )
+}
+
+function MediaItem({ m }) {
+  if (m.type === 'video') {
+    return (
+      <video className={`media ${m.vertical ? 'vertical' : ''}`} controls muted playsInline preload="metadata">
+        <source src={`${m.src}#t=0.1`} type="video/mp4" />
+      </video>
+    )
+  }
+  return <img src={m.src} alt={m.alt} loading="lazy" className="media photo" />
+}
+
+function Carousel({ media }) {
+  const [i, setI] = useState(0)
+  if (media.length === 1) return <MediaItem m={media[0]} />
+  const go = (d) => setI((i + d + media.length) % media.length)
+  return (
+    <div className="carousel">
+      <MediaItem key={media[i].src} m={media[i]} />
+      <div className="carousel-controls">
+        <button onClick={() => go(-1)} aria-label="Previous photo" className="round-btn">{icons.left}</button>
+        <span className="tag">{i + 1} / {media.length}</span>
+        <button onClick={() => go(1)} aria-label="Next photo" className="round-btn">{icons.right}</button>
+      </div>
+    </div>
+  )
+}
+
+function EntryCard({ entry, flip = false }) {
+  const hasMedia = !!entry.media?.length
+  const vertical = entry.media?.[0]?.vertical
+  return (
+    <article className="card-surface entry">
+      <div className={`entry-grid ${hasMedia ? (vertical ? 'with-vertical' : 'with-media') : ''} ${flip && hasMedia ? 'flip' : ''}`}>
+        <div className="entry-text">
+          <h3>{entry.title}</h3>
+          {entry.meta && <p className="meta">{entry.meta}</p>}
+          {entry.tags && (
+            <div className="tags">
+              {entry.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+            </div>
+          )}
+          <p className="body">{entry.body}</p>
+          {entry.link && (
+            <a href={entry.link.href} target="_blank" rel="noreferrer" className="btn-primary">
+              {entry.link.label} {icons.arrow}
+            </a>
+          )}
+        </div>
+        {hasMedia && (
+          <div className={`entry-media ${vertical ? 'narrow' : ''}`}>
+            <Carousel media={entry.media} />
+          </div>
+        )}
+      </div>
+    </article>
+  )
+}
+
+function Accordion({ title, org, body, images }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="card-surface accordion">
+      <button onClick={() => setOpen(!open)} className="accordion-head" aria-expanded={open}>
+        <div>
+          <span className="strong">{title}</span>
+          <p className="meta">{org}</p>
+        </div>
+        <span className={`chevron ${open ? 'open' : ''}`}>{icons.down}</span>
+      </button>
+      {open && (
+        <div className="accordion-body reveal">
+          <p className="body">{body}</p>
+          <Carousel media={images.map((src) => ({ type: 'image', src, alt: title }))} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 function App() {
-  const typedTitle = useTypewriter('Personal Portfolio', 70)
-  const [tocOpen, setTocOpen] = useState(false)
-  const [theme, setTheme] = useState('light')
-
-  const[openIndex, setOpenIndex] = useState(null)
-  const toggleCard = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved) setTheme(saved)
-  }, [])
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -295,503 +156,117 @@ function App() {
 
   return (
     <div>
-      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
-        {theme === 'light' ? <FaMoon /> : <FaSun />}
-      </button>
+      <header className="site-header">
+        <div className="container header-inner">
+          <a href="#top" className="logo">Yanilette<span className="accent">.</span></a>
+          <nav className="nav">
+            {nav.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
+          </nav>
+          <button className="theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label="Toggle dark mode">
+            {theme === 'light' ? icons.moon : icons.sun}
+          </button>
+        </div>
+      </header>
 
-      <button className="toc-toggle" onClick={() => setTocOpen(!tocOpen)} aria-label="Toggle Table of Contents">
-        <FaBars />
-      </button>
-
-      <nav className={`sidebar-toc ${tocOpen ? 'open' : ''}`}>
-          <a href="#about" onClick={() => setTocOpen(false)}>About</a>
-          <a href="#skills" onClick={() => setTocOpen(false)}>Skills</a>
-          <a href="#technical-teams" onClick={() => setTocOpen(false)}>Technical Teams</a>
-          <a href="#projects" onClick={() => setTocOpen(false)}>Projects</a>
-          <a href="#experience" onClick={() => setTocOpen(false)}>Experience</a>
-          <a href="#research" onClick={() => setTocOpen(false)}>Research</a>
-          <a href="#publications" onClick={() => setTocOpen(false)}>Publications</a>
-          <a href="#professional-development" onClick={() => setTocOpen(false)}>Professional Development</a>
-          <a href="#coursework" onClick={() => setTocOpen(false)}>Coursework</a>
-      </nav>
-
-      {/* Hero*/}
-      <section id="header" className="section section-header">
-        <h1>{typedTitle}<span className="cursor">|</span></h1>
-      </section>
-
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      {/* About */}
-      <section id="about" className="section section-about">
-        <div className ="section-inner about-layout">
-          <div className ="about-photo">
-            <img src="/images/update-profile-pic.png" alt="Headshot of Yanilette Montano" />
-            <div className="about-contact-buttons">
-              <a href="https://github.com/yanilettemontano" target="_blank" rel="noreferrer" className="icon-btn" aria-label="Github">
-                <FaGithub />
-              </a>
-              <a href="https://www.linkedin.com/in/yanilette-montano-bb9644292/" target="_blank" rel="noreferrer" className="icon-btn" aria-label="LinkedIn">
-                <FaLinkedin />
-              </a>
-              <EmailButton email ="yamontan@uci.edu" />
+      <section id="top" className="hero dot-grid">
+        <div id="about" className="container hero-grid">
+          <div className="reveal">
+            <p className="eyebrow">Computer Engineering · UC Irvine</p>
+            <h1>Hi, I'm <span className="accent">Yanilette</span>.</h1>
+            <p className="lead">
+              I am a first-generation fourth-year undergraduate student who values mentorship, community, and continuous
+              learning. I enjoy supporting my peers through tutoring, sharing resources, and helping students discover
+              opportunities in engineering.
+            </p>
+            <p className="lead-sub">
+              My academic interests focus on hardware and firmware design, avionics, robotics, and research. Please feel
+              free to reach out and connect!
+            </p>
+            <div className="socials">
+              <a href={contact.github} target="_blank" rel="noreferrer" className="btn-ghost">{icons.github} GitHub</a>
+              <a href={contact.linkedin} target="_blank" rel="noreferrer" className="btn-ghost">{icons.linkedin} LinkedIn</a>
+              <EmailButton />
             </div>
+            <p className="location">{icons.pin} Irvine, CA · Expected graduation March 2028</p>
           </div>
-          <div className="about-text">
-            <h2>About</h2>
-            <p>
-              I'm a first-generation latina computer engineering undergraduate with research experience in quantum networking
-              and semiconductor memory systems, as well as project work spanning classical systems, networking,
-              and machine learning. I'm interested in a future career in quantum networks, building on the systems instincts I 
-              started with in classical computing. 
-              <br />
-              Please reach out if you're curious about my work, if you have a research or internship opportunity I should know about, or if you just want 
-              to talk quantum networks.
-          </p>
+          <div className="portrait-frame reveal">
+            <img src="/images/headshot.jpg" alt="Headshot of Yanilette Montano" />
           </div>
         </div>
       </section>
 
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      {/*Skills*/}
-      <section id="skills" className="section section-skills">
-        <div className="section-inner">
-          <h2>Skills</h2>
-          <div className="skills-list">
-            {skills.map((skill) => (
-              <SkillMeter key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      {/* Technical Teams */}
-      <section id ="technical-teams" className="section section-teams">
-        <div className="section-inner">
-          <h2>Technical Teams</h2>
-          <div className="team-entry">
-            <h3>Flapping Wing Micro Air Vehicle - Flight Controller Subteam</h3>
-            <p className="experience-meta">Dean's Choice Award - 2026 Annual Design Review, UCI Samueli School of Engineering</p>
-            <p>
-              Research and analyzed various custom built flight controllers. Collaborated with other sub-teams to ensure system compatibility 
-              and optimized flight performance. Designed hardware, adapted firmware, test and tune for controlled flights using 
-              Altium, BetaFlight, and microcontroller platforms.
-            </p>
-
-            <Swiper 
-            modules={[Navigation]}
-            navigation
-            spaceBetween={20} 
-            slidesPerView={1} 
-            className="project-carousel">
-            <SwiperSlide>
-              <img src="/images/Fall_2025_Meeting.jpg" alt="Fall 2025 End of Quarter Meeting Group Photo" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/Annual-Design-Review.JPG" alt="Annual Design Review" />
-            </SwiperSlide>
-            
-            </Swiper>
-
-            <a href="https://escholarship.org/uc/item/1kx3x883"
-            target="_blank"
-            rel="noreferrer"
-            className="contact-btn"
-            >
-              View on eScholarship
-            </a>
-
-          </div>
-          <br />
-          <div className="team-entry">
-            <h3>Underwater Robotics Project at UCI - Computer Vision and Perception Subteam</h3>
-            <p className="experience-meta">Sponsored by the U.S. Navy</p>
-            <p>
-              Explore and develop computer vision pipelines for autonomous perception tasks. Learning and contributing to object detection, 
-              image processing, and sensor-based navigation in underwater environments, while collaborating with the team on system integration 
-              and testing.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      {/* Projects */}
-      <section id="projects" className="section section-projects">
-        <div className="section-inner">
-          <h2>Projects</h2>
-
-          <div>
-          <h4>Autonomous Unmanned Aerial Vehicle: AI with Vision Based Navigation</h4>
-          <p><em>Firmware, Edgetx, Mission Planner, Radiomaster, Ardupilot, AI</em></p>
-          <p>
-            This is a course-based project that covers drone avionics, batteries, power, mottors, airframes. The drone uses Ardupilot, that is 
-            full capable of autonomous, GPS guided way point missions with wireless telemetry to a ground control station and fully-flight capabilites.
-            I passed a short online FAA exam and followed all FAA and UC drone policies during the course.
-          </p>
-          <figure className="project-figure">
-            <video className="video-wrapper"
-            controls
-            muted
-            playsInline
-            >
-              <source src="/videos/drone-demo.mp4" type="video/mp4"/>
-              Your browser doesn't support embedded vidoes.
-            </video>
-          </figure>
-          </div>
-
-          <div>
-          <h3>Anteater Chess - Custom Board Evaluator</h3>
-          <p><em>C, Linux, Git</em></p>
-          <p>
-            Built the full board evalation module for a 10 by 8 chess variant, focusing on the following features such as, Material scoring,
-            Tapered Piece-Square Tables, Mobility, King Safety, and Pawn Structure. The evaluation function was used
-            for a team AI that won every tournament game. Out of 32 teams, our team placed 4th in the final tournament.
-          </p>
-          <figure className="project-figure">
-            <img src="/images/AnteaterChess.png" alt="Anteater Chess Gameplay"
-            className="project-image"/>
-          </figure>
-          </div>
-
-          <div>
-          <h3>Client-Server Poker Game</h3>
-          <p><em>C/C++, GTK, TCP sockets</em></p>
-          <p>Designed the deck management system for a client-server poker game, fixed a Fisher-Yates
-            shuffle bias, implemented multi-street Seven Card Stud dealing, and debugged JSON serialization and GUI rendering.
-          </p>
-          <figure className="project-figure">
-            <video className="video-wrapper"
-            controls
-            muted
-            playsInline
-            >
-              <source src="/videos/poker-demo.mp4" type="video/mp4"/>
-              Your browser doesn't support embedded vidoes.
-            </video>
-          </figure>
-          </div>
-        
-        <br/>
-          <div>
-            <h3>RISC-V Processor</h3>
-            <p><em>Verilog, Xilinx Vivado</em></p>
-            <p>
-            I designed and implemented a 32-bit RISC-V processor using Verilog such as developing both the datapath and control logic required for instruction execution. 
-            The project included building key components such as the Filp Flop, Multiplexer, ALU, register file, control unit, and instruction decoder to support R-type 
-            and I-type instruction types. Functionality was validated through simulation and testbenches in Xilinx Vivado, with debugging performed using waveform analysis 
-            and iterative testing to ensure correct instruction flow and system behavior. This work strengthened my understanding of computer architecture, RTL design, and 
-            hardware-level debugging.
-            </p>
-            <figure className="project-figure">
-            <img src="/images/processor.png" alt="Processor Testbench Waveform Simulation"
-            className="project-image"/>
-          </figure>
-          </div>
-        
-        <br />
-        <div>
-          <h3>Matcha Study Timer App</h3>
-          <p><em>Electron, JavaScript, Figma, Pixsquare</em></p>
-          <p>
-            Developed a Pomodoro-style study timer desktop application, 
-            implementing core timing functionality and user interaction features to 
-            support focused study sessions. Designed and integrated a customizable 
-            interface to select 4 study durations, a timer letting the user know there 
-            study time is up and a reset button to restart the process. I also created 
-            original pixel-art icons and visual assets using PixSquare to enhance the
-            user experience and overall design of the application. Structured the application 
-            with multiple pages including a start screen, timer selection, timer interface and 
-            a reset page, This project demonstrated my skills in front-end development, user 
-            interface design and state management.
-          </p>
-          <figure className="project-figure">
-            <video className="video-wrapper"
-            controls
-            muted
-            playsInline
-            >
-              <source src="/videos/study-timer.mp4" type="video/mp4"/>
-              Your browser doesn't support embedded vidoes.
-            </video>
-          </figure>
-        </div>
-        </div>
-      </section>
-
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      {/* Work Experience */}
-      <section id="experience" className="section section-experience">
-        <div className="section-inner">
-          <h2>Experience</h2>
-
-          <div className="experience-entry">
-            <div className="experience-text">
-              <h3>Student Tutor and Assistant</h3>
-              <p className="experience-meta">UCI Engineering Office of Outreach, Access, and Inclusion · Dec 2025 – Present</p>
-              <p>
-                Tutor undergraduates in math, physics, and higher-division computer engineering
-                courses, helping students build confidence with challenging technical material. Previously supported daily operations in the OAI Study Center, welcome student visitors, assist with 
-                sign-ins, and maintain a clean and stocked space. Help prepare promotional materials, organize inventory, and support OAI programming, including 
-                wellness events, academic workshops, guest speakers, and recruitment activities.
-              </p>
+      <Section id="skills" index="01" title="Skills">
+        <div className="skills-grid">
+          {skills.map((s) => (
+            <div key={s.name} className="card-surface skill">
+              <div className="skill-top">
+                <span className="strong">{s.name}</span>
+                <span className="meta">{s.level}%</span>
+              </div>
+              <div className="meter"><div className="meter-fill" style={{ width: `${s.level}%` }} /></div>
+              <p className="muted small">{s.usedIn}</p>
             </div>
-            <img src="/images/OAI.jpg" alt="OAI Staff selfie" className="experience-image"/>
-          </div>
-        
-
-        <div className="experience-entry">
-            <div className="experience-text">
-              <h3>Photolithography Process Engineering Intern</h3>
-              <p className="experience-meta">HRL Laboratories · July 2025 – August 2025</p>
-              <p>
-                I assisted in developing photolithography processes to eventually implement on product wafers. I was trained to use relevant tools such as the cluster and stepper systems. I worked with 
-                process engineers to develop standardized photolithography processes.
-              </p>
-            </div>
-            <img src="/images/HRL.png" alt="HRL cleanroom group picture" className="experience-image"/>
-          </div>
-
-          <div className="experience-entry">
-          <div className="experience-text">
-            <h3>Math and Computer Science Tutor</h3>
-            <p className="experience-meta">Los Angeles Pierce College · September 2024 – June 2025</p>
-            <p>
-              I help students grasp complex topics across a wide range of courses including Algebra, Precalculus, Trigonometry, Calculus I–III, Linear Algebra, Ordinary Differential Equations. 
-              For programming courses, I provide guidance on problem-solving strategies, coding best practices, and debugging techniques in Intro to C++, data structures and algorithms, object-oriented programming in C++, 
-              computer architecture. I’ve also participated in tutoring trainings, workshops, and conferences to continually strengthen my approach as an educator and mentor.
-            </p>
-          </div>
-          <img src="/images/lapc-tutoring.jpeg" alt="LAPC Tutoring logo" className="experience-image"/>
+          ))}
         </div>
+      </Section>
 
-        </div>
-      </section>
+      <Section id="teams" index="02" title="Technical Teams">
+        <div className="stack">{teams.map((e) => <EntryCard key={e.title} entry={e} />)}</div>
+      </Section>
 
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
+      <Section id="projects" index="03" title="Projects">
+        <div className="stack">{projects.map((e, i) => <EntryCard key={e.title} entry={e} flip={i % 2 === 1} />)}</div>
+      </Section>
 
-      {/* Research Section */}
-      <section id="research" className="section section-research">
-        <div className="section-inner">
-          <h2>Research</h2>
+      <Section id="experience" index="04" title="Experience">
+        <div className="stack">{experience.map((e) => <EntryCard key={e.title} entry={e} />)}</div>
+      </Section>
 
-          <div className="research-entry">
-            <h3>Adaptive Flow Control for Quantum TCP</h3>
-            <p className="experience-meta">NSF REU, Krastanov Lab - Center for Quantum Networks · Summer 2026</p>
-            <p>
-              Designed and implemented per-flow AIMD congestion control and PI-based Active Queue
-              Management with ECN signaling for QuantumSavory.jl, an open-source quantum network
-              simulator - replacing a fixed transmission window with real-time, fidelity-driven
-              tuning. Across four network topologies, achieved mean fidelity of 0.93-0.95 versus 0.89-0.92
-              for the fixed-window baseline, consistently holding minimum fidelity above 
-              the entanglement threshold. Also found and fixed three race conditions in multi-hop entanglement
-              swapping. Findings are being prepared for IEEE conference submission.
-            </p>
+      <Section id="research" index="05" title="Research">
+        <div className="stack">{research.map((e, i) => <EntryCard key={e.title} entry={e} flip={i % 2 === 1} />)}</div>
+      </Section>
 
-            <Swiper 
-            modules={[Navigation]}
-            navigation
-            spaceBetween={20} 
-            slidesPerView={1} 
-            className="project-carousel">
-            <SwiperSlide>
-              <img src="/images/Montano_UMass.png" alt="NSF research poster" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/CQN-Poster-Session.png" alt="CQN Poster Session" />
-            </SwiperSlide>
-            
-            </Swiper>
-            
-          </div>
-
-          <div className="research-entry">
-            <h3>Machine Learning Applications in Phase Change Memory Cell Health</h3>
-            <p className="experience-meta">SFS2 REU, CSUN Department of Computer Science · Summer 2025</p>
-            <p>
-              Investigated the use of machine learning techniques to predict the health and reliability of Phase Change Memory (PCM) cells. 
-              Developed and evaluated models using logistic regression and decision trees, achieving up to 98.4% accuracy with the decision tree model.
-            </p>
-
-            <Swiper
-            modules={[Navigation]}
-            navigation
-            spaceBetween={20} 
-            slidesPerView={1} 
-            className="project-carousel"
-            >
-              <SwiperSlide>
-                <img src="/images/PCM-ML-Poster.png" alt="PCM Machine Learning Poster" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/sfs2-symposium.jpeg" alt="PCM Machine Learning Poster 2" />
-              </SwiperSlide>
-            </Swiper>
-          </div>
-
-          <div className="research-entry">
-            <h3>Discrete Mathematics Research</h3>
-            <p className="experience-meta"> NSF-Funded REU, LAPC & UCLA · Fall 2024</p>
-            <p>
-              I collaborated with UCLA graduate students to analyze transfer systems with partially ordered sets. Co-authored 
-              research paper and aimed to make our findings publishable. We presented our findings at the University of Texas-Arlington 
-              in May 9-10, 2025 to faculty and peers.
-            </p>
-          </div>
-          
-        </div>
-      </section>
-
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
-
-      <section id="publications" className="section section-publications">
-        <div className="section-inner">
-          <h2>Publications</h2>
-          <p>
-            <strong>CARE-PCM: Classification and Analysis of Reliability with Efficient Models for PCM</strong><br />
-            2026 IEEE 16th Annual Computing and Communication Workshop and Conference (CCWC), January 2026<br />
-            Logisitic Regression and decision tree models to predict Phase Change Memory cell health;
-            decision tree model achieved up to 98.4% accuracy.
+      <Section id="publications" index="06" title="Publications">
+        <div className="card-surface entry">
+          <h3>CARE-PCM: Classification and Analysis of Reliability with Efficient Models for PCM</h3>
+          <p className="meta">2026 IEEE 16th Annual Computing and Communication Workshop and Conference (CCWC) · January 2026</p>
+          <p className="body">
+            Logistic regression and decision tree models to predict Phase Change Memory cell health; the decision tree model
+            achieved up to 98.4% accuracy.
           </p>
-          <a href="/pdf/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="contact-btn">View slides (PDF)</a>
+          <a href="/pdf/CARE_PCM_IEEE_IEMCON_2025_Presentation.pptx.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+            {icons.file} View slides (PDF)
+          </a>
         </div>
-      </section>
+      </Section>
 
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path
-            d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z"
-            fill="var(--color-accent-mid)"
-            opacity="0.3"
-          />
-          </svg>
-      </div>
+      <Section id="development" index="07" title="Professional Development">
+        <div className="stack tight">{development.map((d) => <Accordion key={d.title} {...d} />)}</div>
+      </Section>
 
-      <section id="professional-development" className="section section-pd">
-        <div className="section-inner">
-          <h2>Professional Development</h2>
+      <Section id="coursework" index="08" title="Coursework">
+        <ol className="timeline">
+          {timeline.map((t) => (
+            <li key={t.term}>
+              <span className={`dot ${t.current ? 'current' : t.done ? 'done' : ''}`} />
+              <div className="term-row">
+                <h3>{t.term}</h3>
+                {t.current && <span className="tag tag-accent">In progress</span>}
+              </div>
+              <ul className="courses">{t.courses.map((c) => <li key={c}>{c}</li>)}</ul>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-          <div className="pd-list">
-            {professionalDevelopment.map((item, index) => (
-              <div key={item.title} className="pd-item">
-                <button className="pd-button" onClick={() => toggleCard(index)}>
-                  <span>{item.title}</span>
-                  <span className={`pd-chevron ${openIndex === index ? 'open' : ''}`}>▾</span>
-                </button>
-
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: 'easeInOut' }}
-                      className="pd-panel"
-                  >
-                    <p className="experience-meta">{item.organization}</p>
-                    <p>{item.description}</p>
-
-                    <Swiper
-                      modules={[Navigation]}
-                      navigation
-                      spaceBetween={16}
-                      slidesPerView={1}
-                      className="pd-carousel"
-                    >
-                      {item.images.map((src) => (
-                        <SwiperSlide key={src}>
-                          <img src={src} alt={item.title} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </motion.div>
-            )}
-          </AnimatePresence>
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <p className="meta">© {new Date().getFullYear()} Yanilette Montano</p>
+          <a href="#top" className="btn-ghost">{icons.up} Back to top</a>
         </div>
-      ))}
+      </footer>
     </div>
-  </div>
-</section>
-
-<section id="coursework" className="section section-coursework">
-  <div className="section-inner">
-    <h2>Coursework</h2>
-    <p className="coursework-note">Expected graduation: March 2028</p>
-    <CourseworkTimeline />
-  </div>
-</section>
-
-<footer className="site-footer">
-  <p className="footer-meta">© {new Date().getFullYear()} Yanilette Montano</p>
-  <button className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-  ↑ Back to top
-</button>
-</footer>
-
-      </div>
-  );
+  )
 }
 
 export default App

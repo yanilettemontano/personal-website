@@ -1,60 +1,32 @@
-# Personal Portfolio Website
+# Yanilette Montano — Personal Website
 
-My personal portfolio site which is built to showcase my research, projects, technical teams, and coursework as a Computer Engineering student at UC Irvine.
+Personal portfolio for Yanilette Montano, a first-generation computer engineering student at UC Irvine.
 
-**Live site:** https://personal-website-delta-ten-53.vercel.app/
+Live site: https://personal-website-delta-ten-53.vercel.app/
 
-## About
+## Design
 
-A coffee-themed portfolio (yes, really) featuring a light/dark mode toggle, an interactive coursework timeline, expandable skill meters, and project carousels — built from scratch to reflect both my technical background and a bit of personality.
-
-## Features
-
-- Light/dark mode toggle (persisted across visits)
-- Custom coffee-themed design system
-- Interactive "coffee intensity" skill meters with hover/click project details
-- Vertical coursework timeline showing completed, in-progress, and upcoming quarters
-- Image/video carousels for research posters and project demos
-- Fully responsive, mobile-friendly layout
-- Collapsible sidebar table of contents for quick navigation
-
-## Tech Stack
-
-- **React** + **Vite** — core framework and build tool
-- **Framer Motion** — scroll animations and expand/collapse transitions
-- **Swiper** — image/video carousels
-- **React Icons** — icon set (GitHub, LinkedIn, coffee beans, etc.)
-- Plain CSS with custom properties (no CSS framework) for the coffee color system and dark mode
+- Clean, professional look with a soft light-pink palette, deep plum text, and a rose accent
+- Plus Jakarta Sans for text and DM Mono for small labels
+- Light and dark mode (the switch is in the top-right; your choice is remembered)
 
 ## Sections
 
-- About
-- Skills
-- Technical Teams
-- Projects
-- Experience
-- Research
-- Publications
-- Professional Development
-- Coursework
+About · Skills · Technical Teams · Projects · Experience · Research · Publications · Professional Development · Coursework
 
-## Running Locally
+## Editing content
 
-```bash
-git clone https://github.com/yanilettemontano/personal-website.git
-cd personal-website
+All text, links, photos, and videos are listed in `src/data.js`. Images live in `public/images`, videos in `public/videos`.
+
+## Tech stack
+
+- React + Vite
+- Plain CSS (`src/App.css`, `src/index.css`)
+- Deployed on Vercel (redeploys automatically on push to `main`)
+
+## Run locally
+
+```sh
 npm install
 npm run dev
 ```
-
-Then open `http://localhost:5173` in your browser.
-
-## Deployment
-
-Deployed via Vercel with automatic redeploys on every push to `main`.
-
-## Contact
-
-- GitHub: [@yanilettemontano](https://github.com/yanilettemontano)
-- LinkedIn: [Yanilette Montano](https://www.linkedin.com/in/yanilette-montano-bb9644292/)
-- Email: yamontan@uci.edu
